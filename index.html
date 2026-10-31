@@ -90,43 +90,103 @@
         <div id="page-zenitsu" class="page"><div class="grid"><div><h1>Zenitsu Agatsuma</h1><div class="sub">Entry #003</div><h2>Combat Style</h2><p>Fights at sound-barrier breaking velocities using Thunder Breathing. Awakens his true martial potential only when unconscious or passed out.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>Sept 3</span></div><div class="row"><span>Height</span><span>164.5 cm</span></div></div></div></div>
         <div id="page-inosuke" class="page"><div class="grid"><div><h1>Inosuke Hashibira</h1><div class="sub">Entry #004</div><h2>Combat Style</h2><p>Creator of Beast Breathing. Utilizes dual serrated blades and enhanced skin sensitivity to locate targets across wide open landscapes.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>April 22</span></div><div class="row"><span>Height</span><span>164 cm</span></div></div></div></div>
         <div id="page-genya" class="page"><div class="grid"><div><h1>Genya Shinazugawa</h1><div class="sub">Entry #005</div><h2>Abilities</h2><p>Cannot use Breathing styles but briefly absorbs demon metrics, regeneration, and active arts by eating raw demonic tissue assets.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>Jan 7</span></div><div class="row"><span>Height</span><span>180 cm</span></div></div></div></div>
-        Kanao TsuyuriTsuguko RegistryTechniquesMasters Flower Breathing. Her ultimate ability, Equinoctial Vermilion Eye, grants extreme visual processing speeds by slowing down her perception of time.MetricsBirthdayMay 19Height156 cm
-Aoi KanzakiMansion StaffRoleHandles nursing wards, physical recovery programs, nutrient meals, and strategic first-aid supplies at the Butterfly Mansion due to battlefield trauma.MetricsStationButterfly Mansion
-Sumi, Kiyo, & NahoNursing UnitOverviewSumi Nakahara, Kiyo Terauchi, and Naho Takada are young orphans who launder uniforms, prepare recovery food, and care for injured swordsmen.MetricsRoleMansion Assistants
-Giyuu TomiokaWater PillarMasteryWater Hashira. Formulated the exclusive Eleventh Form: Dead Calm, which entirely neutralizes incoming enemy strikes within his immediate reach.MetricsBirthdayFeb 8Height176 cm
-Shinobu KochoInsect PillarMasteryInsect Hashira [|1.3.5|]. Lacks physical upper-body power to cleanly cut heads off [|1.3.5|]. Uses stinger weapons to inject custom lethal Wisteria plant toxins [|1.3.5|].MetricsBirthdayFeb 24Height151 cm
-Kyojuro RengokuFlame PillarMasteryFlame Hashira [|1.4.1|]. Commanded massive offensive flame arcs [|1.4.1|]. Safely guarded two hundred train passengers before his final battle with Akaza [|1.4.1|].MetricsBirthdayMay 10Height177 cm
-Tengen UzuiSound PillarMasterySound Hashira. Employs dual explosive cleavers and deep Musical Score tracing systems to convert fast enemy attack patterns into readable rhythms.MetricsBirthdayOct 31Height198 cm
-Muichiro TokitoMist PillarMasteryMist Hashira. Created the disorienting Seventh Form: Obscuring Clouds. Reached peak Hashira status in only 60 days after starting blade training.MetricsBirthdayAug 8Height160 cm
-Mitsuri KanrojiLove PillarMasteryLove Hashira. Wields a whip-like thin katana blade. Holds an extraordinary mutation where muscle fibers are 8 times denser than standard human values.MetricsBirthdayJune 1Height167 cm
-Obanai IguroSerpent PillarMasterySerpent Hashira. Wields a waved katana blade that wraps around obstacles to strike hidden vitals from completely unpredictable blind angles.MetricsBirthdaySept 15Height162 cm
-Sanemi ShinazugawaWind PillarMasteryWind Hashira. Deploys highly volatile offensive storm loops. Carries rare Marechi blood whose smell actively intoxicatingly disorients demon brains.MetricsBirthdayNov 29Height179 cm
-Gyomei HimejimaStone PillarMasteryStone Hashira. Strongest physical asset in the organization. Swings a giant spiked metal flail and axe link, tracking spatial maps via sound waves.MetricsBirthdayAug 23Height220 cm
-Muzan KibutsujiDemon ProgenitorAnatomyThe original demon origin king [|1.4.3|]. Carries 5 separate brains and 7 hearts, completely ignoring weapon decaps unless caught under direct sunlight [|1.4.3|].MetricsAge1000+ YearsThreatAbsolute Apocalypse
-KokushiboUpper Rank OneAncient moon breathing swordsman from the Sengoku Era. Employs a mutating weapon crafted from his own biological flesh and tracks opponents via 6 eyes.
-DoumaUpper Rank TwoCult leader immune to raw emotion. Channels freezing powder clouds via dual fans, destroying the lung linings of human fighters instantly [|1.4.1|].
-AkazaUpper Rank ThreeMartial artist practicing Destructive Death forms [|1.4.1|]. His Compass Needle snowflake art locks onto opponent battle spirit values to land instant counters [|1.4.1|].
-HantenguUpper Rank FourCowardly core demon who manifests five giant, elemental emotion battle clones representing Anger, Joy, Sorrow, Relaxation, and Hatred.
-GyokkoUpper Rank FiveGrotesque potter demon who ports through vase networks, manipulating water containment cubes and summoning toxic fish weapons.
-Daki & GyutaroUpper Rank SixDual sibling entity sharing one life link core. Daki wields sharp ribbon sashes, while Gyutaro attacks using toxic blood sickle tracking paths.
-EnmuLower Rank OneSadistic master who fuses with trains and slips targets into deep sleep states via ticket strings, attacking inside their spirit bounds.
-RokuroLower Rank TwoExecuted inside the Infinity Mansion gathering by Lord Muzan after begging for extra blood assets during the lower group purge.
-WakurabaLower Rank ThreeInstantly decapitated after launching a high-speed break-out sprint down the mansion halls to escape the sorting execution.
-MukagoLower Rank FourPurged on the spot after Muzan read her mind layers and discovered deep mental cowardice and plans to run away from Pillar units.
-RuiLower Rank FiveSpider demon king of Mt. Natagumo. Constructed a captive spider family system held together by razor-sharp steel web networks.
-KamanueLower Rank SixThe first lower tier member erased on site. Executed for mentally complaining about Muzan's resource allocation parameters.
-const menu = document.getElementById('menu');
-if (window.innerWidth <= 900) menu.classList.add('hidden');
-function toggleMenu() {
-menu.classList.toggle('hidden');
-}
-function go(id) {
-document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
-const targetPage = document.getElementById(page-${id});
-const targetBtn = document.getElementById(btn-${id});
-if (targetPage) targetPage.classList.add('active');
-if (targetBtn) targetBtn.classList.add('active');
-if (window.innerWidth <= 900) menu.classList.add('hidden');
-window.scrollTo(0,0);
-}
+        
+Kanao Tsuyuri
+
+Welcome to the complete character database for Kimetsu no Yaiba. Tap the 📂 MENU button at the top to select and load individual databook logs instantly. Kanao is a Flower Breathing Tsuguko born on May 19 who stands 156 cm tall. Her ultimate ability, Equinoctial Vermilion Eye, grants her extreme visual processing speeds by slowing down her perception of time.
+
+Aoi Kanzaki
+
+She is a dedicated member of the Butterfly Mansion staff. Due to past battlefield trauma, she steps away from active combat to handle the nursing wards, physical recovery programs, nutrient meals, and strategic first-aid supplies.
+
+Sumi, Kiyo, & Naho
+
+They serve as the vital Nursing Unit assistants at the Butterfly Mansion. These young orphans support the core staff by laundering uniforms, preparing recovery food, and caring for injured swordsmen.
+
+Giyuu Tomioka
+
+He is the Water Pillar (Water Hashira) born on Feb 8 who stands 176 cm tall. He is a master of his craft and formulated the exclusive Eleventh Form: Dead Calm, which entirely neutralizes incoming enemy strikes within his immediate reach.
+
+Shinobu Kocho
+
+She is the Insect Pillar (Insect Hashira) born on Feb 24 who stands 151 cm tall [|1.3.5|]. Lacking the physical upper-body power required to cleanly cut heads off, she uses custom stinger weapons to inject lethal Wisteria plant toxins into her targets [|1.3.5|].
+
+Kyojuro Rengoku
+
+He is the Flame Pillar (Flame Hashira) born on May 10 who stands 177 cm tall [|1.4.1|]. Known for his fiery passion, he commanded massive offensive flame arcs and safely guarded two hundred train passengers before his final battle with Akaza [|1.4.1|].
+
+Tengen Uzui
+
+He is the Sound Pillar (Sound Hashira) born on Oct 31 who stands 198 cm tall. He employs dual explosive cleavers and deep Musical Score tracing systems to convert fast enemy attack patterns into readable rhythms.
+
+Muichiro Tokito
+
+He is the Mist Pillar (Mist Hashira) born on Aug 8 who stands 160 cm tall. He reached peak Hashira status in only 60 days after starting blade training and created the disorienting Seventh Form: Obscuring Clouds.
+
+Mitsuri Kanroji
+
+She is the Love Pillar (Love Hashira) born on June 1 who stands 167 cm tall. She wields a unique whip-like thin katana blade and holds an extraordinary mutation where her muscle fibers are 8 times denser than standard human values.
+
+Obanai Iguro
+
+He is the Serpent Pillar (Serpent Hashira) born on Sept 15 who stands 162 cm tall. He wields a waved katana blade that wraps around obstacles to strike hidden vitals from completely unpredictable blind angles.
+
+Sanemi Shinazugawa
+
+He is the Wind Pillar (Wind Hashira) born on Nov 29 who stands 179 cm tall. He deploys highly volatile offensive storm loops and carries rare Marechi blood whose scent disorients and actively intoxicates demon brains.
+
+Gyomei Himejima
+
+He is the Stone Pillar (Stone Hashira) born on Aug 23 who stands 220 cm tall. As the strongest physical asset in the organization, he swings a giant spiked metal flail and axe link while tracking spatial maps via sound waves.
+
+Muzan Kibutsuji
+
+He is the Demon Progenitor and the absolute apocalypse king of the demon origin line [|1.4.3|]. Over 1000 years old, he carries 5 separate brains and 7 hearts, completely ignoring weapon decaps unless caught under direct sunlight [|1.4.3|].
+
+Kokushibo
+
+He holds the rank of Upper Rank One. He is an ancient moon breathing swordsman from the Sengoku Era who tracks opponents via 6 eyes and employs a mutating weapon crafted from his own biological flesh.
+
+Douma
+
+He holds the rank of Upper Rank Two. He is a detached cult leader immune to raw emotion who channels freezing powder clouds via dual fans, destroying the lung linings of human fighters instantly [|1.4.1|].
+
+Akaza
+
+He holds the rank of Upper Rank Three [|1.4.1|]. He is a fierce martial artist practicing Destructive Death forms whose Compass Needle snowflake art locks onto an opponent's battle spirit values to land instant counters [|1.4.1|].
+
+Hantengu
+
+He holds the rank of Upper Rank Four. He is a cowardly core demon who protects himself by manifesting five giant, elemental emotion battle clones representing Anger, Joy, Sorrow, Relaxation, and Hatred.
+
+Gyokko
+
+He holds the rank of Upper Rank Five. He is a grotesque potter demon who ports through vase networks, manipulating water containment cubes and summoning toxic fish weapons.
+
+Daki & Gyutaro
+
+They hold the rank of Upper Rank Six. They are a dual sibling entity sharing one life link core; Daki wields sharp ribbon sashes while Gyutaro attacks using toxic blood sickle tracking paths.
+
+Enmu
+
+He holds the rank of Lower Rank One. He is a sadistic master who fuses with trains and slips targets into deep sleep states via ticket strings, attacking them inside their spirit bounds.
+
+Rokuro
+
+He held the rank of Lower Rank Two. He was executed inside the Infinity Mansion gathering by Lord Muzan after begging for extra blood assets during the lower group purge.
+
+Wakuraba
+
+He held the rank of Lower Rank Three. He was instantly decapitated after launching a high-speed break-out sprint down the mansion halls to escape the sorting execution.
+
+Mukago
+
+He held the rank of Lower Rank Four. She was purged on the spot after Muzan read her mind layers and discovered deep mental cowardice alongside plans to run away from Pillar units.
+
+Rui
+
+He held the rank of Lower Rank Five. He ruled as the spider demon king of Mt. Natagumo, constructing a captive spider family system held together by razor-sharp steel web networks.
+
+Kamanue
+
+He held the rank of Lower Rank Six. He was the first lower tier member erased on site, executed for mentally complaining about Muzan's resource allocation parameters.
