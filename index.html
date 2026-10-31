@@ -10,10 +10,12 @@
         
         body { background-color: var(--bg-main); color: var(--text); display: flex; min-height: 100vh; flex-direction: column; overflow-x: hidden; }
         
-        .header { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-dark); padding: 15px 20px; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 100; }
-        .menu-btn { background: var(--red); color: white; border: none; padding: 8px 14px; border-radius: 4px; font-weight: bold; cursor: pointer; z-index: 101; }
+        /* Fixed Header Bar with highest priority stacking interaction levels */
+        .header { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-dark); padding: 15px 20px; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1100; pointer-events: auto; }
+        .menu-btn { background: var(--red); color: white; border: none; padding: 8px 14px; border-radius: 4px; font-weight: bold; cursor: pointer; display: block; position: relative; z-index: 1200; -webkit-tap-highlight-color: transparent; }
         
-        aside { width: 280px; background-color: var(--bg-dark); position: fixed; top: 0; bottom: 0; left: 0; z-index: 99; display: flex; flex-direction: column; transition: transform 0.3s ease; border-right: 1px solid #222; padding-top: 60px; }
+        /* Mobile Navigation Overlay Box Drawer Layout Settings */
+        aside { width: 280px; background-color: var(--bg-dark); position: fixed; top: 55px; bottom: 0; left: 0; z-index: 1000; display: flex; flex-direction: column; transition: transform 0.3s ease; border-right: 1px solid #222; transform: translateX(0); }
         aside.hidden { transform: translateX(-100%); }
         
         .nav-sections { list-style: none; padding: 10px 0; overflow-y: auto; flex-grow: 1; }
@@ -21,7 +23,7 @@
         .item { padding: 12px 20px; cursor: pointer; font-size: 0.95rem; border-left: 3px solid transparent; color: #a0a0ab; -webkit-tap-highlight-color: transparent; }
         .item:hover, .item.active { background: var(--bg-card); border-left-color: var(--red); color: white; }
         
-        main { flex-grow: 1; padding: 20px; width: 100%; position: relative; }
+        main { flex-grow: 1; padding: 20px; width: 100%; position: relative; z-index: 1; }
         
         .page { display: none; width: 100%; }
         .page.active { display: block !important; }
@@ -36,13 +38,14 @@
         .box-title { text-align: center; font-weight: bold; background: var(--red); color: white; padding: 6px; border-radius: 4px; margin-bottom: 10px; font-size: 0.95rem; }
         .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #1c1c24; font-size: 0.9rem; }
 
-        .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 98; }
+        .overlay { display: none; position: fixed; top: 55px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 900; }
         .overlay.active { display: block; }
         
-        @media (min-width: 1025px) { 
+        /* Desktop Mode Configurations */
+        @media (min-width: 901px) { 
             body { flex-direction: row; } 
             .header { display: none; } 
-            aside { top: 0; transform: none !important; padding-top: 0; position: fixed; } 
+            aside { top: 0; transform: none !important; position: fixed; z-index: 1000; } 
             .overlay { display: none !important; }
             main { margin-left: 280px; padding: 40px; } 
             .grid { display: grid; grid-template-columns: 1fr 320px; gap: 30px; } 
@@ -58,6 +61,7 @@
 
     <div id="sidebarOverlay" class="overlay" onclick="toggleMenu()"></div>
 
+    <!-- Set class explicitly to hidden on load initialization -->
     <aside id="menu" class="hidden">
         <ul class="nav-sections">
             <div class="category">Database Portal</div>
@@ -118,6 +122,39 @@
         <div id="page-zenitsu" class="page"><div class="grid"><div><h1>Zenitsu Agatsuma</h1><div class="sub">Entry #003</div><h2>Combat Style</h2><p>Fights at sound-barrier breaking velocities using Thunder Breathing. Awakens his true martial potential only when unconscious or passed out.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>Sept 3</span></div><div class="row"><span>Height</span><span>164.5 cm</span></div></div></div></div>
 
         <!-- Inosuke Hashibira -->
-        <div id="page-inosuke" class="page"><div class="grid"><div><h1>Inosuke Hashibira</h1><div class="sub">Entry #004</div><h2>Combat Style</h2><p>Creator of Beast Breathing. Utilizes dual serrated blades and enhanced skin sensitivity to locate targets across wide open landscapes.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>April 22</span></div><div class="row"><span>Height</span><span>164 cm</span></div></div></div></div>
+        History
+Held the rank of Lower Rank Six and holds the unfortunate distinction of being the first lower tier member erased on-site by Lord Muzan. His execution was carried out instantly because he was caught mentally complaining about Muzan's resource allocation parameters and demands.
 
-        
+
+Metrics
+RankLower Moon 6
+StatusPurged
+
+
+
+function toggleMenu() {
+const menu = document.getElementById('menu');
+const overlay = document.getElementById('sidebarOverlay');
+// Check state and execute clean animation toggles
+if (menu.classList.contains('hidden')) {
+menu.classList.remove('hidden');
+overlay.classList.add('active');
+} else {
+menu.classList.add('hidden');
+overlay.classList.remove('active');
+}
+}
+function go(id) {
+document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
+const targetPage = document.getElementById('page-' + id);
+const targetBtn = document.getElementById('btn-' + id);
+if (targetPage) targetPage.classList.add('active');
+if (targetBtn) targetBtn.classList.add('active');
+// Auto close mobile layout components cleanly upon selection triggers
+const menu = document.getElementById('menu');
+const overlay = document.getElementById('sidebarOverlay');
+menu.classList.add('hidden');
+overlay.classList.remove('active');
+window.scrollTo(0, 0);
+}
