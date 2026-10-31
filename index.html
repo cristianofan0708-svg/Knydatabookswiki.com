@@ -3,251 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demon Slayer: Kimetsu no Yaiba - Ultimate Databook Database</title>
+    <title>Demon Slayer: Ultimate Databook Encyclopedia</title>
     <style>
         :root {
             --bg-darker: #060608;
             --bg-main: #0c0c10;
             --bg-card: #14141c;
-            --bg-hover: #1e1e2b;
             --text-pure: #ffffff;
             --text-body: #cfcfd8;
             --text-muted: #78788a;
             --brand-crimson: #e63946;
             --brand-flame: #ff5e13;
             --border-muted: #20202c;
-            --font-stack: 'Inter', system-ui, -apple-system, sans-serif;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: var(--font-stack);
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-body);
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Responsive Layout Grid */
-        aside {
-            width: 300px;
-            background-color: var(--bg-darker);
-            border-right: 1px solid var(--border-muted);
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            height: 100vh;
-            z-index: 100;
-        }
-
-        .brand-header {
-            padding: 24px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--text-pure);
-            border-bottom: 1px solid var(--border-muted);
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(to right, #0d0d14, transparent);
-        }
-
-        .brand-badge {
-            background: linear-gradient(135deg, var(--brand-crimson), var(--brand-flame));
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-            transform: rotate(45deg);
-        }
-
-        .nav-sections {
-            list-style: none;
-            padding: 20px 0;
-            overflow-y: auto;
-            flex-grow: 1;
-        }
-
-        .nav-category {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            padding: 16px 24px 6px 24px;
-        }
-
-        .nav-item {
-            padding: 10px 24px;
-            cursor: pointer;
-            color: var(--text-body);
-            font-size: 0.88rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            color: var(--text-pure);
-            background-color: var(--bg-card);
-            border-left: 4px solid var(--brand-crimson);
-            padding-left: 20px;
-        }
-
-        main {
-            margin-left: 300px;
-            flex-grow: 1;
-            width: calc(100% - 300px);
-            padding: 40px;
-            min-height: 100vh;
-        }
-
-        .search-container {
-            position: relative;
-            margin-bottom: 40px;
-            max-width: 650px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 14px 20px 14px 45px;
-            background-color: var(--bg-darker);
-            border: 1px solid var(--border-muted);
-            border-radius: 8px;
-            color: var(--text-pure);
-            font-size: 0.95rem;
-        }
-
-        .search-container::before {
-            content: "🔍";
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.4;
-        }
-
-        /* Wiki Structural Layout Layouts */
-        .wiki-page-grid {
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 40px;
-        }
-
-        #display-viewport h1 {
-            font-size: 2.5rem;
-            color: var(--text-pure);
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-
-        .article-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .section-header {
-            font-size: 1.25rem;
-            color: var(--brand-flame);
-            margin: 30px 0 15px 0;
-            border-bottom: 1px solid var(--border-muted);
-            padding-bottom: 6px;
-            text-transform: uppercase;
-        }
-
-        #display-viewport p {
-            line-height: 1.8;
-            margin-bottom: 16px;
-            color: #b8b8c4;
-            text-align: justify;
-        }
-
-        /* Databook Profile Cards */
-        .wiki-infobox {
-            background-color: var(--bg-darker);
-            border: 1px solid var(--border-muted);
-            border-radius: 10px;
-            padding: 20px;
-            align-self: start;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-
-        .infobox-title {
-            text-align: center;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-pure);
-            background: linear-gradient(90deg, #b70918, #e63946);
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 16px;
-        }
-
-        .infobox-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #14141f;
-            font-size: 0.88rem;
-        }
-
-        .infobox-label {
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .infobox-value {
-            color: var(--text-pure);
-            font-weight: 500;
-        }
-
-        .databook-list {
-            margin-left: 20px;
-            margin-bottom: 24px;
-        }
-
-        .databook-list li {
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 1024px) {
-            body { flex-direction: column; }
-            aside { width: 100%; height: auto; position: relative; }
-            main { margin-left: 0; width: 100%; padding: 20px; }
-            .wiki-page-grid { grid-template-columns: 1fr; }
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-body); display: flex; min-height: 100vh; }
+        aside { width: 310px; background-color: var(--bg-darker); border-right: 1px solid var(--border-muted); display: flex; flex-direction: column; position: fixed; height: 100vh; z-index: 100; }
+        .brand-header { padding: 24px; font-size: 1.1rem; font-weight: 800; color: var(--text-pure); border-bottom: 1px solid var(--border-muted); text-transform: uppercase; }
+        .nav-sections { list-style: none; padding: 20px 0; overflow-y: auto; flex-grow: 1; }
+        .nav-category { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); padding: 16px 24px 6px 24px; }
+        .nav-item { padding: 10px 24px; cursor: pointer; color: var(--text-body); font-size: 0.88rem; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+        .nav-item:hover, .nav-item.active { color: var(--text-pure); background-color: var(--bg-card); border-left: 4px solid var(--brand-crimson); padding-left: 20px; }
+        main { margin-left: 310px; flex-grow: 1; width: calc(100% - 310px); padding: 40px; min-height: 100vh; }
+        .search-container { position: relative; margin-bottom: 40px; max-width: 650px; }
+        .search-input { width: 100%; padding: 14px 20px 14px 45px; background-color: var(--bg-darker); border: 1px solid var(--border-muted); border-radius: 8px; color: var(--text-pure); font-size: 0.95rem; }
+        .search-container::before { content: "🔍"; position: absolute; left: 16px; top: 50%; transform: translateY(-50%); opacity: 0.4; }
+        .wiki-page-grid { display: grid; grid-template-columns: 1fr 360px; gap: 40px; }
+        #display-viewport h1 { font-size: 2.5rem; color: var(--text-pure); font-weight: 800; margin-bottom: 4px; }
+        .article-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; text-transform: uppercase; }
+        .section-header { font-size: 1.25rem; color: var(--brand-flame); margin: 30px 0 15px 0; border-bottom: 1px solid var(--border-muted); padding-bottom: 6px; text-transform: uppercase; }
+        #display-viewport p { line-height: 1.8; margin-bottom: 16px; color: #b8b8c4; }
+        .wiki-infobox { background-color: var(--bg-darker); border: 1px solid var(--border-muted); border-radius: 10px; padding: 20px; align-self: start; }
+        .infobox-title { text-align: center; font-size: 1.25rem; font-weight: 700; color: var(--text-pure); background: linear-gradient(90deg, #b70918, #e63946); padding: 10px; border-radius: 6px; margin-bottom: 16px; }
+        .infobox-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #14141f; font-size: 0.88rem; }
+        .infobox-label { color: var(--text-muted); font-weight: 600; }
+        .infobox-value { color: var(--text-pure); }
+        .databook-list { margin-left: 20px; margin-bottom: 24px; }
+        .databook-list li { margin-bottom: 12px; line-height: 1.6; }
+        @media (max-width: 1024px) { body { flex-direction: column; } aside { width: 100%; height: auto; position: relative; } main { margin-left: 0; width: 100%; padding: 20px; } .wiki-page-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
     <aside>
-        <div class="brand-header">
-            <div class="brand-badge"></div>
-            <span>KNY Complete Databook</span>
-        </div>
+        <div class="brand-header">⚔️ KNY Grand Databook</div>
         <ul class="nav-sections">
-            <div class="nav-category">Database Hub</div>
-            <li class="nav-item active" id="nav-home">📖 Master Archive Overview</li>
+            <div class="nav-category">Main Space</div>
+            <li class="nav-item active" id="nav-home">📖 Master Overview</li>
             
-            <div class="nav-category">The Main Squad</div>
+            <div class="nav-category">Tanjiro Trio & Allies</div>
             <li class="nav-item" id="nav-tanjiro">🎴 Tanjiro Kamado</li>
             <li class="nav-item" id="nav-nezuko">🎀 Nezuko Kamado</li>
             <li class="nav-item" id="nav-zenitsu">⚡ Zenitsu Agatsuma</li>
             <li class="nav-item" id="nav-inosuke">🐗 Inosuke Hashibira</li>
             <li class="nav-item" id="nav-genya">🚬 Genya Shinazugawa</li>
             <li class="nav-item" id="nav-kanao">🦋 Kanao Tsuyuri</li>
+            <li class="nav-item" id="nav-aoi">🦋 Aoi Kanzaki</li>
+            <li class="nav-item" id="nav-girls">👧 Sumi, Kiyo, & Naho</li>
 
             <div class="nav-category">The Nine Hashira</div>
             <li class="nav-item" id="nav-giyuu">🌊 Giyuu Tomioka</li>
@@ -260,31 +71,40 @@
             <li class="nav-item" id="nav-sanemi">🌪️ Sanemi Shinazugawa</li>
             <li class="nav-item" id="nav-gyomei">📿 Gyomei Himejima</li>
 
-            <div class="nav-category">Twelve Kizuki & Origin</div>
+            <div class="nav-category">The Demon Progenitor</div>
             <li class="nav-item" id="nav-muzan">🩸 Lord Muzan Kibutsuji</li>
+
+            <div class="nav-category">The Upper Moons</div>
             <li class="nav-item" id="nav-kokushibo">🌙 Kokushibo (Upper 1)</li>
             <li class="nav-item" id="nav-douma">❄️ Douma (Upper 2)</li>
-            <li class="nav-item" id="nav-akaza">❄️ Akaza (Upper 3)</li>
+            <li class="nav-item" id="nav-akaza">🏀 Akaza (Upper 3)</li>
+            <li class="nav-item" id="nav-hantengu">🪵 Hantengu (Upper 4)</li>
+            <li class="nav-item" id="nav-gyokko">🏺 Gyokko (Upper 5)</li>
+            <li class="nav-item" id="nav-daki">👘 Daki & Gyutaro (Upper 6)</li>
+
+            <div class="nav-category">The Lower Moons</div>
+            <li class="nav-item" id="nav-enmu">🚂 Enmu (Lower 1)</li>
+            <li class="nav-item" id="nav-rokuro">💀 Rokuro (Lower 2)</li>
+            <li class="nav-item" id="nav-wakuraba">💨 Wakuraba (Lower 3)</li>
+            <li class="nav-item" id="nav-mukago">👁️ Mukago (Lower 4)</li>
+            <li class="nav-item" id="nav-rui">🕸️ Rui (Lower 5)</li>
+            <li class="nav-item" id="nav-kamanue">🎭 Kamanue (Lower 6)</li>
         </ul>
     </aside>
 
     <main>
-        <div class="search-container">
-            <input type="text" id="search-box" class="search-input" placeholder="Query data nodes for any character profile...">
-        </div>
-        
-        <div id="display-viewport">
-            <!-- Content mounts here -->
-        </div>
+        <div class="search-container"><input type="text" id="search-box" class="search-input" placeholder="Search database..."></div>
+        <div id="display-viewport"></div>
     </main>
 
     <script>
         const databookDB = {
-            home: {
-                title: "The Ultimate Character Databook Registry",
-                subtitle: "Comprehensive Records across the Entire Corps and Twelve Kizuki Ecosystem.",
-                content: `<p>Welcome to the absolute master compilation file. This section indexes canonical data points extracted directly from both official databooks published by Koyoharu Gotouge [|1.3.2, 1.3.3|]. Select any profile node from the control menu on the left to read precise height records, birthdays, family origins, combat classifications, and hidden Taisho gossip details [|1.3.3|].</p>`
-            },
-            tanjiro: {
-                title: "Tanjiro Kamado", subtitle: "Corps Member Entry // Subject #001",
-        
+            home: { title: "Grand Master Databook", subtitle: "Complete Compilation", content: "<p>Select any character node to pull up canonical data points directly from the official series records.</p>" },
+            tanjiro: { title: "Tanjiro Kamado", subtitle: "Subject #001", content: '<div class="wiki-page-grid"><div><p>Mastered both Water Breathing and Sun Breathing paths.</p></div><div class="wiki-infobox"><div class="infobox-title">Metrics</div><div class="infobox-row"><span>Birthday</span><span>July 14</span></div><div class="infobox-row"><span>Height</span><span>165 cm</span></div></div></div>' },
+            nezuko: { title: "Nezuko Kamado", subtitle: "Subject #002", content: '<div class="wiki-page-grid"><div><p>Demon variant immune to the sun.</p></div><div class="wiki-infobox"><div class="infobox-title">Metrics</div><div class="infobox-row"><span>Birthday</span><span>Dec 28</span></div></div></div>' },
+            zenitsu: { title: "Zenitsu Agatsuma", subtitle: "Subject #003", content: '<div class="wiki-page-grid"><div><p>Strikes with sound-barrier shattering velocity via Thunder Breathing.</p></div><div class="wiki-infobox"><div class="infobox-title">Metrics</div><div class="infobox-row"><span>Birthday</span><span>Sept 3</span></div></div></div>' },
+            inosuke: { title: "Inosuke Hashibira", subtitle: "Subject #004", content: '<div class="wiki-page-grid"><div><p>Creator of the wild Beast Breathing tracking method.</p></div><div class="wiki-infobox"><div class="infobox-title">Metrics</div><div class="infobox-row"><span>Birthday</span><span>April 22</span></div></div></div>' },
+            genya: { title: "Genya Shinazugawa", subtitle: "Subject #005", content: '<div class="wiki-page-grid"><div><p>Absorbs specialized demonic features by eating operational flesh assets.</p></div><div class="wiki-infobox"><div class="infobox-title">Metrics</div><div class="infobox-row"><span>Birthday</span><span>Jan 7</span></div></div></div>' },
+            kanao: { title: "Kanao Tsuyuri", subtitle: "Tsuguko Entry", content: '<div class="wiki-page-grid"><div><p>Immaculate vision tracking master trained directly under the Butterfly Pillars.</p></div><div class="wiki-infobox"><div class="infobox-title">Metrics</div><div class="infobox-row"><span>Birthday</span><span>May 19</span></div></div></div>' },
+            aoi: { title: "Aoi Kanzaki", subtitle: "Mansion Overseer", content: '<div class="wiki-page-grid"><div><p>Handles combat supply logistics, recovery medicine, and training regimens.</p></div><div class="wiki-infobox"><div class="infobox-title">Metrics</div><div class="infobox-row"><span>Classification</span><span>Medical Support</span></div></div></div>' },
+        ?update=1
