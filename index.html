@@ -1,27 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KNY Ultimate Wiki</title>
-    <style>
-        :root { --bg-dark: #08080c; --bg-main: #101016; --bg-card: #1b1b22; --text: #cfcfd8; --red: #e63946; --orange: #ff5e13; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text); display: flex; min-height: 100vh; flex-direction: column; overflow-x: hidden; }
-        .header { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-dark); padding: 15px 20px; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1100; }
-        .menu-btn { background: var(--red); color: white; border: none; padding: 8px 14px; border-radius: 4px; font-weight: bold; cursor: pointer; }
-        aside { width: 280px; background-color: var(--bg-dark); position: fixed; top: 55px; bottom: 0; left: 0; z-index: 1000; display: flex; flex-direction: column; transition: transform 0.3s ease; border-right: 1px solid #222; }
-        aside.hidden { transform: translateX(-100%); }
-        .nav-sections { list-style: none; padding: 10px 0; overflow-y: auto; flex-grow: 1; }
-        .category { font-size: 0.75rem; font-weight: 700; color: #666; padding: 12px 20px 4px 20px; text-transform: uppercase; }
-        .item { padding: 12px 20px; cursor: pointer; font-size: 0.95rem; border-left: 3px solid transparent; color: #a0a0ab; }
-        .item:hover, .item.active { background: var(--bg-card); border-left-color: var(--red); color: white; }
-        main { flex-grow: 1; padding: 20px; width: 100%; }
-        .page { display: none; } .page.active { display: block !important; }
-        h1 { font-size: 1.8rem; color: white; margin-bottom: 5px; }
-        .sub { font-size: 0.85rem; color: #666; margin-bottom: 20px; text-transform: uppercase; }
-        h2 { font-size: 1.15rem; color: var(--orange); margin: 20px 0 10px 0; border-bottom: 1px solid #222; padding-bottom: 4px; }
-        p { line-height: 1.6; margin-bottom: 12px; font-size: 0.95rem; }
-        .grid { display: flex; flex-direction: column; gap: 20px; }
-        .box { background-color: var(--bg-dark); border: 1px solid #222; border-radius: 8px; padding: 15px; }
-        .box-title { text-align: center; font-weight: bold; background: var(--red); color: white; padding: 6px; border-radius: 4px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KNY Ultimate Wiki</title>
+<style>
+body{margin:0;background:#101016;color:#cfcfd8;font-family:system-ui,sans-serif}
+.header{display:flex;justify-content:space-between;align-items:center;background:#08080c;padding:15px 20px;border-bottom:1px solid #222;position:sticky;top:0;z-index:1100}
+.menu-btn{background:#e63946;color:white;border:none;padding:8px 14px;border-radius:4px;font-weight:bold;cursor:pointer}
+aside{width:280px;background:#08080c;position:fixed;top:55px;bottom:0;left:0;z-index:1000;transition:transform .3s ease;border-right:1px solid #222}
+aside.hidden{transform:translateX(-100%)}
+.item{padding:12px 20px;cursor:pointer;border-left:3px solid transparent;color:#a0a0ab}
+.item.active{background:#1b1b22;border-left-color:#e63946;color:white}
+main{padding:20px}
+.page{display:none}.page.active{display:block}
+h1{color:white} .box{background:#08080c;border:1px solid #222;border-radius:8px;padding:15px;margin-top:20px}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #222}
+.overlay{display:none;position:fixed;top:55px;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:900}
+.overlay.active{display:block}
+@media(min-width:901px){.header{display:none} aside{top:0;transform:none!important} main{margin-left:280px;padding:40px} .overlay{display:none!important}}
+</style>
+</head>
+<body>
+<div class="header"><div style="font-weight:800;color:white">⚔️ KNY ENCYCLOPEDIA</div><button class="menu-btn" onclick="toggleMenu()">📂 MENU</button></div>
+<div id="sidebarOverlay" class="overlay" onclick="toggleMenu()"></div>
+<aside id="menu" class="hidden">
+<div class="item active" id="btn-home" onclick="go('home')">📖 Master Overview</div>
+<div class="item" id="btn-kama" onclick="go('kama')">🎭 Kamanue (Lower 6) - FIXED</div>
+<div class="item" id="btn-rui" onclick="go('rui')">🕸️ Rui (Lower 5)</div>
+<div class="item" id="btn-enmu" onclick="go('enmu')">🚂 Enmu (Lower 1)</div>
+<div class="item" id="btn-tanjiro" onclick="go('tanjiro')">🎴 Tanjiro</div>
+</aside>
+<main>
+<div id="page-home" class="page active">
+<h1>Official Databook Archive</h1>
+<p>Welcome! If you see this, the blank bug is FIXED.</p>
+<p>Click 📂 MENU and then Kamanue - the JS leak is gone now.</p>
+</div>
+
+<div id="page-kama" class="page">
+<h1>Kamanue (Lower 6)</h1>
+<h2>History</h2>
+<p>Held the rank of Lower Rank Six and holds the unfortunate distinction of being the first lower rank member erased on-site by Lord Muzan.</p>
+<p>His execution was carried out instantly because he was caught mentally complaining about Muzan's resource allocation parameters and demands.</p>
+<div class="box">
+<div class="row"><span>Rank</span><span>Lower Moon 6</span></div>
+<div class="row"><span>Status</span><span>Purged - FIXED</span></div>
+<div class="row"><span>Debut</span><span>Chapter 51</span></div>
+</div>
+</div>
+
+<div id="page-rui" class="page"><h1>Rui</h1><p>Spider demon.</p></div>
+<div id="page-enmu" class="page"><h1>Enmu</h1><p>Mugen Train demon.</p></div>
+<div id="page-tanjiro" class="page"><h1>Tanjiro Kamado</h1><p>Sun Breathing user.</p></div>
+</main>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById('menu');
+  var o=document.getElementById('sidebarOverlay');
+  if(m.classList.contains('hidden')){m.classList.remove('hidden');o.classList.add('active');}
+  else{m.classList.add('hidden');o.classList.remove('active');}
+}
+function go(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.item').forEach(function(i){i.classList.remove('active')});
+  var pg=document.getElementById('page-'+id);
+  var btn=document.getElementById('btn-'+id);
+  if(pg) pg.classList.add('active');
+  if(btn) btn.classList.add('active');
+  document.getElementById('menu').classList.add('hidden');
+  document.getElementById('sidebarOverlay').classList.remove('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
