@@ -3,161 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demon Slayer: Ultimate Databook Encyclopedia</title>
+    <title>KNY Ultimate Wiki</title>
     <style>
-        :root {
-            --bg-darker: #060608;
-            --bg-main: #0c0c10;
-            --bg-card: #14141c;
-            --text-pure: #ffffff;
-            --text-body: #cfcfd8;
-            --text-muted: #78788a;
-            --brand-crimson: #e63946;
-            --brand-flame: #ff5e13;
-            --border-muted: #20202c;
-        }
+        :root { --bg-dark: #08080c; --bg-main: #101016; --bg-card: #1b1b22; --text: #cfcfd8; --red: #e63946; --orange: #ff5e13; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-body); display: flex; min-height: 100vh; flex-direction: column; }
-        
-        /* Mobile Fixed Navigation Bar */
-        .mobile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--bg-darker);
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-muted);
-            position: sticky;
-            top: 0;
-            z-index: 150;
-        }
-        .mobile-title { font-weight: 800; font-size: 1rem; color: var(--text-pure); text-transform: uppercase; }
-        .menu-toggle-btn { background: var(--brand-crimson); color: white; border: none; padding: 8px 14px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
-
-        /* Left Side Drawer Menu */
-        aside { 
-            width: 100%; 
-            max-width: 320px; 
-            background-color: var(--bg-darker); 
-            border-right: 1px solid var(--border-muted); 
-            display: flex; 
-            flex-direction: column; 
-            position: fixed; 
-            top: 50px;
-            bottom: 0;
-            left: 0;
-            z-index: 100; 
-            transition: transform 0.25s ease;
-        }
+        body { background-color: var(--bg-main); color: var(--text); display: flex; min-height: 100vh; flex-direction: column; }
+        .header { display: flex; justify-content: space-between; align-items: center; background-color: var(--bg-dark); padding: 15px 20px; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 100; }
+        .menu-btn { background: var(--red); color: white; border: none; padding: 8px 14px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        aside { width: 100%; max-width: 300px; background-color: var(--bg-dark); position: fixed; top: 55px; bottom: 0; left: 0; z-index: 90; display: flex; flex-direction: column; transition: transform 0.2s ease; }
         aside.hidden { transform: translateX(-100%); }
-        
-        .nav-sections { list-style: none; padding: 10px 0 40px 0; overflow-y: auto; flex-grow: 1; }
-        .nav-category { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); padding: 16px 24px 6px 24px; }
-        .nav-item { padding: 12px 24px; cursor: pointer; color: var(--text-body); font-size: 0.9rem; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
-        .nav-item:hover, .nav-item.active { color: var(--text-pure); background-color: var(--bg-card); border-left: 4px solid var(--brand-crimson); }
-        
-        /* Main Encyclopedia Viewport */
-        main { flex-grow: 1; padding: 25px; width: 100%; }
-        
-        .wiki-page { display: none; animation: fadeIn 0.2s ease-out; }
-        .wiki-page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .wiki-page h1 { font-size: 2.2rem; color: var(--text-pure); font-weight: 800; margin-bottom: 4px; }
-        .article-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .section-header { font-size: 1.2rem; color: var(--brand-flame); margin: 25px 0 12px 0; border-bottom: 1px solid var(--border-muted); padding-bottom: 6px; text-transform: uppercase; }
-        .wiki-page p { line-height: 1.7; margin-bottom: 15px; color: #b8b8c4; font-size: 0.95rem; text-align: justify; }
-        
-        /* Wiki Info Cards */
-        .wiki-infobox { background-color: var(--bg-darker); border: 1px solid var(--border-muted); border-radius: 10px; padding: 20px; margin-top: 20px; }
-        .infobox-title { text-align: center; font-size: 1.2rem; font-weight: 700; color: var(--text-pure); background: linear-gradient(90deg, #b70918, #e63946); padding: 10px; border-radius: 6px; margin-bottom: 16px; }
-        .infobox-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #14141f; font-size: 0.88rem; }
-        .infobox-label { color: var(--text-muted); font-weight: 600; }
-        .infobox-value { color: var(--text-pure); text-align: right; }
-        .databook-list { margin-left: 20px; margin-bottom: 24px; }
-        .databook-list li { margin-bottom: 12px; line-height: 1.6; font-size: 0.95rem; color: #b8b8c4; }
-
-        @media (min-width: 901px) {
-            body { flex-direction: row; }
-            .mobile-header { display: none; }
-            aside { width: 310px; max-width: 310px; position: fixed; top: 0; bottom: 0; transform: none !important; }
-            main { margin-left: 310px; width: calc(100% - 310px); padding: 40px; }
-            .wiki-page-grid { display: grid; grid-template-columns: 1fr 360px; gap: 40px; }
-            .wiki-infobox { margin-top: 0; }
-        }
+        .nav-sections { list-style: none; padding: 10px 0; overflow-y: auto; flex-grow: 1; }
+        .category { font-size: 0.75rem; font-weight: 700; color: #666; padding: 12px 20px 4px 20px; text-transform: uppercase; }
+        .item { padding: 10px 20px; cursor: pointer; font-size: 0.9rem; border-left: 3px solid transparent; }
+        .item:hover, .item.active { background: var(--bg-card); border-left-color: var(--red); color: white; }
+        main { flex-grow: 1; padding: 20px; width: 100%; }
+        .page { display: none; }
+        .page.active { display: block; }
+        h1 { font-size: 2rem; color: white; margin-bottom: 5px; }
+        .sub { font-size: 0.85rem; color: #666; margin-bottom: 20px; text-transform: uppercase; }
+        h2 { font-size: 1.15rem; color: var(--orange); margin: 20px 0 10px 0; border-bottom: 1px solid #222; padding-bottom: 4px; text-transform: uppercase; }
+        p { line-height: 1.6; margin-bottom: 12px; font-size: 0.95rem; }
+        .box { background-color: var(--bg-dark); border: 1px solid #222; border-radius: 8px; padding: 15px; margin-top: 20px; }
+        .box-title { text-align: center; font-weight: bold; background: var(--red); color: white; padding: 6px; border-radius: 4px; margin-bottom: 10px; font-size: 0.95rem; }
+        .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1c1c24; font-size: 0.85rem; }
+        @media (min-width: 901px) { body { flex-direction: row; } .header { display: none; } aside { top: 0; transform: none !important; } main { margin-left: 300px; padding: 40px; } .grid { display: grid; grid-template-columns: 1fr 320px; gap: 30px; } .box { margin-top: 0; } }
     </style>
 </head>
 <body>
 
-    <!-- Sticky Navigation Panel for Phones -->
-    <div class="mobile-header">
-        <div class="mobile-title">⚔️ KNY Master Databook</div>
-        <button class="menu-toggle-btn" id="menu-btn" onclick="toggleMenu()">📂 VIEW MENU</button>
+    <div class="header">
+        <div style="font-weight:800; color:white;">⚔️ KNY ENCYCLOPEDIA</div>
+        <button class="menu-btn" onclick="toggleMenu()">📂 MENU</button>
     </div>
 
-    <!-- Roster Panel Menu Layout -->
-    <aside id="sidebar-drawer">
+    <aside id="menu">
         <ul class="nav-sections">
-            <div class="nav-category">Main Space</div>
-            <li class="nav-item active" id="nav-home" onclick="showArticle('home')">📖 Master Overview</li>
-            
-            <div class="nav-category">Tanjiro Trio & Allies</div>
-            <li class="nav-item" id="nav-tanjiro" onclick="showArticle('tanjiro')">🎴 Tanjiro Kamado</li>
-            <li class="nav-item" id="nav-nezuko" onclick="showArticle('nezuko')">🎀 Nezuko Kamado</li>
-            <li class="nav-item" id="nav-zenitsu" onclick="showArticle('zenitsu')">⚡ Zenitsu Agatsuma</li>
-            <li class="nav-item" id="nav-inosuke" onclick="showArticle('inosuke')">🐗 Inosuke Hashibira</li>
-            <li class="nav-item" id="nav-genya" onclick="showArticle('genya')">🚬 Genya Shinazugawa</li>
-            <li class="nav-item" id="nav-kanao" onclick="showArticle('kanao')">🦋 Kanao Tsuyuri</li>
-            <li class="nav-item" id="nav-aoi" onclick="showArticle('aoi')">🦋 Aoi Kanzaki</li>
-            <li class="nav-item" id="nav-girls" onclick="showArticle('girls')">👧 Sumi, Kiyo, & Naho</li>
-
-            <div class="nav-category">The Nine Hashira</div>
-            <li class="nav-item" id="nav-giyuu" onclick="showArticle('giyuu')">🌊 Giyuu Tomioka</li>
-            <li class="nav-item" id="nav-shinobu" onclick="showArticle('shinobu')">🧪 Shinobu Kocho</li>
-            <li class="nav-item" id="nav-rengoku" onclick="showArticle('rengoku')">🔥 Kyojuro Rengoku</li>
-            <li class="nav-item" id="nav-uzui" onclick="showArticle('uzui')">💎 Tengen Uzui</li>
-            <li class="nav-item" id="nav-muichiro" onclick="showArticle('muichiro')">🌫️ Muichiro Tokito</li>
-            <li class="nav-item" id="nav-mitsuri" onclick="showArticle('mitsuri')">💖 Mitsuri Kanroji</li>
-            <li class="nav-item" id="nav-obanai" onclick="showArticle('obanai')">🐍 Obanai Iguro</li>
-            <li class="nav-item" id="nav-sanemi" onclick="showArticle('sanemi')">🌪️ Sanemi Shinazugawa</li>
-            <li class="nav-item" id="nav-gyomei" onclick="showArticle('gyomei')">📿 Gyomei Himejima</li>
-
-            <div class="nav-category">The Demon Progenitor</div>
-            <li class="nav-item" id="nav-muzan" onclick="showArticle('muzan')">🩸 Lord Muzan Kibutsuji</li>
-
-            <div class="nav-category">The Upper Moons</div>
-            <li class="nav-item" id="nav-kokushibo" onclick="showArticle('kokushibo')">🌙 Kokushibo (Upper 1)</li>
-            <li class="nav-item" id="nav-douma" onclick="showArticle('douma')">❄️ Douma (Upper 2)</li>
-            <li class="nav-item" id="nav-akaza" onclick="showArticle('akaza')">💥 Akaza (Upper 3)</li>
-            <li class="nav-item" id="nav-hantengu" onclick="showArticle('hantengu')">🪵 Hantengu (Upper 4)</li>
-            <li class="nav-item" id="nav-gyokko" onclick="showArticle('gyokko')">🏺 Gyokko (Upper 5)</li>
-            <li class="nav-item" id="nav-daki" onclick="showArticle('daki')">👘 Daki & Gyutaro (Upper 6)</li>
-
-            <div class="nav-category">The Lower Moons</div>
-            <li class="nav-item" id="nav-enmu" onclick="showArticle('enmu')">🚂 Enmu (Lower 1)</li>
-            <li class="nav-item" id="nav-rokuro" onclick="showArticle('rokuro')">💀 Rokuro (Lower 2)</li>
-            <li class="nav-item" id="nav-wakuraba" onclick="showArticle('wakuraba')">💨 Wakuraba (Lower 3)</li>
-            <li class="nav-item" id="nav-mukago" onclick="showArticle('mukago')">👁️ Mukago (Lower 4)</li>
-            <li class="nav-item" id="nav-rui" onclick="showArticle('rui')">🕸️ Rui (Lower 5)</li>
-            <li class="nav-item" id="nav-kamanue" onclick="showArticle('kamanue')">🎭 Kamanue (Lower 6)</li>
+            <div class="category">Database Portal</div>
+            <div class="item active" id="btn-home" onclick="go('home')">📖 Master Overview</div>
+            <div class="category">Tanjiro Trio & Allies</div>
+            <div class="item" id="btn-tanjiro" onclick="go('tanjiro')">🎴 Tanjiro Kamado</div>
+            <div class="item" id="btn-nezuko" onclick="go('nezuko')">🎀 Nezuko Kamado</div>
+            <div class="item" id="btn-zenitsu" onclick="go('zenitsu')">⚡ Zenitsu Agatsuma</div>
+            <div class="item" id="btn-inosuke" onclick="go('inosuke')">🐗 Inosuke Hashibira</div>
+            <div class="item" id="btn-genya" onclick="go('genya')">🚬 Genya Shinazugawa</div>
+            <div class="item" id="btn-kanao" onclick="go('kanao')">🦋 Kanao Tsuyuri</div>
+            <div class="item" id="btn-aoi" onclick="go('aoi')">🦋 Aoi Kanzaki</div>
+            <div class="item" id="btn-girls" onclick="go('girls')">👧 Sumi, Kiyo, & Naho</div>
+            <div class="category">The Nine Hashira</div>
+            <div class="item" id="btn-giyuu" onclick="go('giyuu')">🌊 Giyuu Tomioka</div>
+            <div class="item" id="btn-shinobu" onclick="go('shinobu')">🧪 Shinobu Kocho</div>
+            <div class="item" id="btn-rengoku" onclick="go('rengoku')">🔥 Kyojuro Rengoku</div>
+            <div class="item" id="btn-uzui" onclick="go('uzui')">💎 Tengen Uzui</div>
+            <div class="item" id="btn-muichiro" onclick="go('muichiro')">🌫️ Muichiro Tokito</div>
+            <div class="item" id="btn-mitsuri" onclick="go('mitsuri')">💖 Mitsuri Kanroji</div>
+            <div class="item" id="btn-obanai" onclick="go('obanai')">🐍 Obanai Iguro</div>
+            <div class="item" id="btn-sanemi" onclick="go('sanemi')">🌪️ Sanemi Shinazugawa</div>
+            <div class="item" id="btn-gyomei" onclick="go('gyomei')">📿 Gyomei Himejima</div>
+            <div class="category">Demons Progenitor</div>
+            <div class="item" id="btn-muzan" onclick="go('muzan')">🩸 Lord Muzan Kibutsuji</div>
+            <div class="category">Upper Moons</div>
+            <div class="item" id="btn-koku" onclick="go('koku')">🌙 Kokushibo (Upper 1)</div>
+            <div class="item" id="btn-douma" onclick="go('douma')">❄️ Douma (Upper 2)</div>
+            <div class="item" id="btn-akaza" onclick="go('akaza')">💥 Akaza (Upper 3)</div>
+            <div class="item" id="btn-hantengu" onclick="go('hantengu')">🪵 Hantengu (Upper 4)</div>
+            <div class="item" id="btn-gyokko" onclick="go('gyokko')">🏺 Gyokko (Upper 5)</div>
+            <div class="item" id="btn-daki" onclick="go('daki')">👘 Daki & Gyutaro (Upper 6)</div>
+            <div class="category">Lower Moons</div>
+            <div class="item" id="btn-enmu" onclick="go('enmu')">🚂 Enmu (Lower 1)</div>
+            <div class="item" id="btn-rokuro" onclick="go('rokuro')">💀 Rokuro (Lower 2)</div>
+            <div class="item" id="btn-waku" onclick="go('wakuraba')">💨 Wakuraba (Lower 3)</div>
+            <div class="item" id="btn-muka" onclick="go('mukago')">👁️ Mukago (Lower 4)</div>
+            <div class="item" id="btn-rui" onclick="go('rui')">🕸️ Rui (Lower 5)</div>
+            <div class="item" id="btn-kama" onclick="go('kamanue')">🎭 Kamanue (Lower 6)</div>
         </ul>
     </aside>
 
     <main>
-        <div id="content-container">
-            
-            <!-- Home Portal -->
-            <div id="page-home" class="wiki-page active">
-                <h1>Official Databook Archive</h1>
-                <div class="article-subtitle">Canonical Encyclopedia Edition</div>
-                <p>Welcome to the consolidated master record framework for <b>Kimetsu no Yaiba</b>. This encyclopedia contains full history files, combat technical sheets, and databook records directly verified by creator Koyoharu Gotouge.</p>
-                <p>Tap the <b>VIEW MENU</b> button at the top to access the comprehensive character lists across the Demon Slayer Corps and the Twelve Kizuki.</p>
-            </div>
+        <div id="page-home" class="page active">
+            <h1>Official Databook Archive</h1>
+            <div class="sub">Encyclopedia Edition</div>
+            <p>Welcome to the complete character database for Kimetsu no Yaiba. Tap the <b>📂 MENU</b> button at the top to select and load individual databook logs instantly.</p>
+        </div>
 
-            <!-- Tanjiro Portal -->
-            <div id="page-tanjiro" class="wiki-page">
-                <div class="wiki-page-grid">
-                    <div>
-                        <h1>Tanjiro Kamado</h1>
-                        <div class="article-subtitle">Corps Member Entry // #001</div>
-                        
+        <div id="page-tanjiro" class="page"><div class="grid"><div><h1>Tanjiro Kamado</h1><div class="sub">Entry #001</div><h2>History</h2><p>Joined the Corps to cure his sister Nezuko and avenge his slaughtered family. Mastered both Water Breathing and origin-point Sun Breathing styles.</p><h2>Trivia</h2><p>Inherited an incredibly hard forehead from his mother, Kie Kamado.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>July 14</span></div><div class="row"><span>Height</span><span>165 cm</span></div><div class="row"><span>Weight</span><span>61 kg</span></div></div></div></div>
+        <div id="page-nezuko" class="page"><div class="grid"><div><h1>Nezuko Kamado</h1><div class="sub">Entry #002</div><h2>Abilities</h2><p>Turned into a demon but protects humans via hypnotic suggestions. Bypasses feeding traits by sleeping and ignites demon cells using Exploding Blood arts.</p><h2>Trivia</h2><p>First demon in history to successfully conquer solar rays.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>Dec 28</span></div><div class="row"><span>Height</span><span>153 cm</span></div><div class="row"><span>Weight</span><span>45 kg</span></div></div></div></div>
+        <div id="page-zenitsu" class="page"><div class="grid"><div><h1>Zenitsu Agatsuma</h1><div class="sub">Entry #003</div><h2>Combat Style</h2><p>Fights at sound-barrier breaking velocities using Thunder Breathing. Awakens his true martial potential only when unconscious or passed out.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>Sept 3</span></div><div class="row"><span>Height</span><span>164.5 cm</span></div></div></div></div>
+        <div id="page-inosuke" class="page"><div class="grid"><div><h1>Inosuke Hashibira</h1><div class="sub">Entry #004</div><h2>Combat Style</h2><p>Creator of Beast Breathing. Utilizes dual serrated blades and enhanced skin sensitivity to locate targets across wide open landscapes.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>April 22</span></div><div class="row"><span>Height</span><span>164 cm</span></div></div></div></div>
+        <div id="page-genya" class="page"><div class="grid"><div><h1>Genya Shinazugawa</h1><div class="sub">Entry #005</div><h2>Abilities</h2><p>Cannot use Breathing styles but briefly absorbs demon metrics, regeneration, and active arts by eating raw demonic tissue assets.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>Jan 7</span></div><div class="row"><span>Height</span><span>180 cm</span></div></div></div></div>
+        Kanao TsuyuriTsuguko RegistryTechniquesMasters Flower Breathing. Her ultimate ability, Equinoctial Vermilion Eye, grants extreme visual processing speeds by slowing down her perception of time.MetricsBirthdayMay 19Height156 cm
+Aoi KanzakiMansion StaffRoleHandles nursing wards, physical recovery programs, nutrient meals, and strategic first-aid supplies at the Butterfly Mansion due to battlefield trauma.MetricsStationButterfly Mansion
+Sumi, Kiyo, & NahoNursing UnitOverviewSumi Nakahara, Kiyo Terauchi, and Naho Takada are young orphans who launder uniforms, prepare recovery food, and care for injured swordsmen.MetricsRoleMansion Assistants
+Giyuu TomiokaWater PillarMasteryWater Hashira. Formulated the exclusive Eleventh Form: Dead Calm, which entirely neutralizes incoming enemy strikes within his immediate reach.MetricsBirthdayFeb 8Height176 cm
+Shinobu KochoInsect PillarMasteryInsect Hashira [|1.3.5|]. Lacks physical upper-body power to cleanly cut heads off [|1.3.5|]. Uses stinger weapons to inject custom lethal Wisteria plant toxins [|1.3.5|].MetricsBirthdayFeb 24Height151 cm
+Kyojuro RengokuFlame PillarMasteryFlame Hashira [|1.4.1|]. Commanded massive offensive flame arcs [|1.4.1|]. Safely guarded two hundred train passengers before his final battle with Akaza [|1.4.1|].MetricsBirthdayMay 10Height177 cm
+Tengen UzuiSound PillarMasterySound Hashira. Employs dual explosive cleavers and deep Musical Score tracing systems to convert fast enemy attack patterns into readable rhythms.MetricsBirthdayOct 31Height198 cm
+Muichiro TokitoMist PillarMasteryMist Hashira. Created the disorienting Seventh Form: Obscuring Clouds. Reached peak Hashira status in only 60 days after starting blade training.MetricsBirthdayAug 8Height160 cm
+Mitsuri KanrojiLove PillarMasteryLove Hashira. Wields a whip-like thin katana blade. Holds an extraordinary mutation where muscle fibers are 8 times denser than standard human values.MetricsBirthdayJune 1Height167 cm
+Obanai IguroSerpent PillarMasterySerpent Hashira. Wields a waved katana blade that wraps around obstacles to strike hidden vitals from completely unpredictable blind angles.MetricsBirthdaySept 15Height162 cm
+Sanemi ShinazugawaWind PillarMasteryWind Hashira. Deploys highly volatile offensive storm loops. Carries rare Marechi blood whose smell actively intoxicatingly disorients demon brains.MetricsBirthdayNov 29Height179 cm
+Gyomei HimejimaStone PillarMasteryStone Hashira. Strongest physical asset in the organization. Swings a giant spiked metal flail and axe link, tracking spatial maps via sound waves.MetricsBirthdayAug 23Height220 cm
+Muzan KibutsujiDemon ProgenitorAnatomyThe original demon origin king [|1.4.3|]. Carries 5 separate brains and 7 hearts, completely ignoring weapon decaps unless caught under direct sunlight [|1.4.3|].MetricsAge1000+ YearsThreatAbsolute Apocalypse
+KokushiboUpper Rank OneAncient moon breathing swordsman from the Sengoku Era. Employs a mutating weapon crafted from his own biological flesh and tracks opponents via 6 eyes.
+DoumaUpper Rank TwoCult leader immune to raw emotion. Channels freezing powder clouds via dual fans, destroying the lung linings of human fighters instantly [|1.4.1|].
+AkazaUpper Rank ThreeMartial artist practicing Destructive Death forms [|1.4.1|]. His Compass Needle snowflake art locks onto opponent battle spirit values to land instant counters [|1.4.1|].
+HantenguUpper Rank FourCowardly core demon who manifests five giant, elemental emotion battle clones representing Anger, Joy, Sorrow, Relaxation, and Hatred.
+GyokkoUpper Rank FiveGrotesque potter demon who ports through vase networks, manipulating water containment cubes and summoning toxic fish weapons.
+Daki & GyutaroUpper Rank SixDual sibling entity sharing one life link core. Daki wields sharp ribbon sashes, while Gyutaro attacks using toxic blood sickle tracking paths.
+EnmuLower Rank OneSadistic master who fuses with trains and slips targets into deep sleep states via ticket strings, attacking inside their spirit bounds.
+RokuroLower Rank TwoExecuted inside the Infinity Mansion gathering by Lord Muzan after begging for extra blood assets during the lower group purge.
+WakurabaLower Rank ThreeInstantly decapitated after launching a high-speed break-out sprint down the mansion halls to escape the sorting execution.
+MukagoLower Rank FourPurged on the spot after Muzan read her mind layers and discovered deep mental cowardice and plans to run away from Pillar units.
+RuiLower Rank FiveSpider demon king of Mt. Natagumo. Constructed a captive spider family system held together by razor-sharp steel web networks.
+KamanueLower Rank SixThe first lower tier member erased on site. Executed for mentally complaining about Muzan's resource allocation parameters.
+const menu = document.getElementById('menu');
+if (window.innerWidth <= 900) menu.classList.add('hidden');
+function toggleMenu() {
+menu.classList.toggle('hidden');
+}
+function go(id) {
+document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
+const targetPage = document.getElementById(page-${id});
+const targetBtn = document.getElementById(btn-${id});
+if (targetPage) targetPage.classList.add('active');
+if (targetBtn) targetBtn.classList.add('active');
+if (window.innerWidth <= 900) menu.classList.add('hidden');
+window.scrollTo(0,0);
+}
