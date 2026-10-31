@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demon Slayer: Ultimate Databook Encyclopedia</title>
+    <style>
+        :root {
+            --bg-darker: #060608;
+            --bg-main: #0c0c10;
+            --bg-card: #14141c;
+            --text-pure: #ffffff;
+            --text-body: #cfcfd8;
+            --text-muted: #78788a;
+            --brand-crimson: #e63946;
+            --brand-flame: #ff5e13;
+            --border-muted: #20202c;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-body); display: flex; min-height: 100vh; flex-direction: column; }
+        
+        /* Mobile Fixed Navigation Bar */
+        .mobile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-darker);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-muted);
+            position: sticky;
+            top: 0;
+            z-index: 150;
+        }
+        .mobile-title { font-weight: 800; font-size: 1rem; color: var(--text-pure); text-transform: uppercase; }
+        .menu-toggle-btn { background: var(--brand-crimson); color: white; border: none; padding: 8px 14px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.85rem; }
+
+        /* Left Side Drawer Menu */
+        aside { 
+            width: 100%; 
+            max-width: 320px; 
+            background-color: var(--bg-darker); 
+            border-right: 1px solid var(--border-muted); 
+            display: flex; 
+            flex-direction: column; 
+            position: fixed; 
+            top: 50px;
+            bottom: 0;
+            left: 0;
+            z-index: 100; 
+            transition: transform 0.25s ease;
+        }
+        aside.hidden { transform: translateX(-100%); }
+        
+        .nav-sections { list-style: none; padding: 10px 0 40px 0; overflow-y: auto; flex-grow: 1; }
+        .nav-category { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); padding: 16px 24px 6px 24px; }
+        .nav-item { padding: 12px 24px; cursor: pointer; color: var(--text-body); font-size: 0.9rem; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+        .nav-item:hover, .nav-item.active { color: var(--text-pure); background-color: var(--bg-card); border-left: 4px solid var(--brand-crimson); }
+        
+        /* Main Encyclopedia Viewport */
+        main { flex-grow: 1; padding: 25px; width: 100%; }
+        
+        .wiki-page { display: none; animation: fadeIn 0.2s ease-out; }
+        .wiki-page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .wiki-page h1 { font-size: 2.2rem; color: var(--text-pure); font-weight: 800; margin-bottom: 4px; }
+        .article-subtitle { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-header { font-size: 1.2rem; color: var(--brand-flame); margin: 25px 0 12px 0; border-bottom: 1px solid var(--border-muted); padding-bottom: 6px; text-transform: uppercase; }
+        .wiki-page p { line-height: 1.7; margin-bottom: 15px; color: #b8b8c4; font-size: 0.95rem; text-align: justify; }
+        
+        /* Wiki Info Cards */
+        .wiki-infobox { background-color: var(--bg-darker); border: 1px solid var(--border-muted); border-radius: 10px; padding: 20px; margin-top: 20px; }
+        .infobox-title { text-align: center; font-size: 1.2rem; font-weight: 700; color: var(--text-pure); background: linear-gradient(90deg, #b70918, #e63946); padding: 10px; border-radius: 6px; margin-bottom: 16px; }
+        .infobox-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #14141f; font-size: 0.88rem; }
+        .infobox-label { color: var(--text-muted); font-weight: 600; }
+        .infobox-value { color: var(--text-pure); text-align: right; }
+        .databook-list { margin-left: 20px; margin-bottom: 24px; }
+        .databook-list li { margin-bottom: 12px; line-height: 1.6; font-size: 0.95rem; color: #b8b8c4; }
+
+        @media (min-width: 901px) {
+            body { flex-direction: row; }
+            .mobile-header { display: none; }
+            aside { width: 310px; max-width: 310px; position: fixed; top: 0; bottom: 0; transform: none !important; }
+            main { margin-left: 310px; width: calc(100% - 310px); padding: 40px; }
+            .wiki-page-grid { display: grid; grid-template-columns: 1fr 360px; gap: 40px; }
+            .wiki-infobox { margin-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Panel for Phones -->
+    <div class="mobile-header">
+        <div class="mobile-title">⚔️ KNY Master Databook</div>
+        <button class="menu-toggle-btn" id="menu-btn" onclick="toggleMenu()">📂 VIEW MENU</button>
+    </div>
+
+    <!-- Roster Panel Menu Layout -->
+    <aside id="sidebar-drawer">
+        <ul class="nav-sections">
+            <div class="nav-category">Main Space</div>
+            <li class="nav-item active" id="nav-home" onclick="showArticle('home')">📖 Master Overview</li>
+            
+            <div class="nav-category">Tanjiro Trio & Allies</div>
+            <li class="nav-item" id="nav-tanjiro" onclick="showArticle('tanjiro')">🎴 Tanjiro Kamado</li>
+            <li class="nav-item" id="nav-nezuko" onclick="showArticle('nezuko')">🎀 Nezuko Kamado</li>
+            <li class="nav-item" id="nav-zenitsu" onclick="showArticle('zenitsu')">⚡ Zenitsu Agatsuma</li>
+            <li class="nav-item" id="nav-inosuke" onclick="showArticle('inosuke')">🐗 Inosuke Hashibira</li>
+            <li class="nav-item" id="nav-genya" onclick="showArticle('genya')">🚬 Genya Shinazugawa</li>
+            <li class="nav-item" id="nav-kanao" onclick="showArticle('kanao')">🦋 Kanao Tsuyuri</li>
+            <li class="nav-item" id="nav-aoi" onclick="showArticle('aoi')">🦋 Aoi Kanzaki</li>
+            <li class="nav-item" id="nav-girls" onclick="showArticle('girls')">👧 Sumi, Kiyo, & Naho</li>
+
+            <div class="nav-category">The Nine Hashira</div>
+            <li class="nav-item" id="nav-giyuu" onclick="showArticle('giyuu')">🌊 Giyuu Tomioka</li>
+            <li class="nav-item" id="nav-shinobu" onclick="showArticle('shinobu')">🧪 Shinobu Kocho</li>
+            <li class="nav-item" id="nav-rengoku" onclick="showArticle('rengoku')">🔥 Kyojuro Rengoku</li>
+            <li class="nav-item" id="nav-uzui" onclick="showArticle('uzui')">💎 Tengen Uzui</li>
+            <li class="nav-item" id="nav-muichiro" onclick="showArticle('muichiro')">🌫️ Muichiro Tokito</li>
+            <li class="nav-item" id="nav-mitsuri" onclick="showArticle('mitsuri')">💖 Mitsuri Kanroji</li>
+            <li class="nav-item" id="nav-obanai" onclick="showArticle('obanai')">🐍 Obanai Iguro</li>
+            <li class="nav-item" id="nav-sanemi" onclick="showArticle('sanemi')">🌪️ Sanemi Shinazugawa</li>
+            <li class="nav-item" id="nav-gyomei" onclick="showArticle('gyomei')">📿 Gyomei Himejima</li>
+
+            <div class="nav-category">The Demon Progenitor</div>
+            <li class="nav-item" id="nav-muzan" onclick="showArticle('muzan')">🩸 Lord Muzan Kibutsuji</li>
+
+            <div class="nav-category">The Upper Moons</div>
+            <li class="nav-item" id="nav-kokushibo" onclick="showArticle('kokushibo')">🌙 Kokushibo (Upper 1)</li>
+            <li class="nav-item" id="nav-douma" onclick="showArticle('douma')">❄️ Douma (Upper 2)</li>
+            <li class="nav-item" id="nav-akaza" onclick="showArticle('akaza')">💥 Akaza (Upper 3)</li>
+            <li class="nav-item" id="nav-hantengu" onclick="showArticle('hantengu')">🪵 Hantengu (Upper 4)</li>
+            <li class="nav-item" id="nav-gyokko" onclick="showArticle('gyokko')">🏺 Gyokko (Upper 5)</li>
+            <li class="nav-item" id="nav-daki" onclick="showArticle('daki')">👘 Daki & Gyutaro (Upper 6)</li>
+
+            <div class="nav-category">The Lower Moons</div>
+            <li class="nav-item" id="nav-enmu" onclick="showArticle('enmu')">🚂 Enmu (Lower 1)</li>
+            <li class="nav-item" id="nav-rokuro" onclick="showArticle('rokuro')">💀 Rokuro (Lower 2)</li>
+            <li class="nav-item" id="nav-wakuraba" onclick="showArticle('wakuraba')">💨 Wakuraba (Lower 3)</li>
+            <li class="nav-item" id="nav-mukago" onclick="showArticle('mukago')">👁️ Mukago (Lower 4)</li>
+            <li class="nav-item" id="nav-rui" onclick="showArticle('rui')">🕸️ Rui (Lower 5)</li>
+            <li class="nav-item" id="nav-kamanue" onclick="showArticle('kamanue')">🎭 Kamanue (Lower 6)</li>
+        </ul>
+    </aside>
+
+    <main>
+        <div id="content-container">
+            
+            <!-- Home Portal -->
+            <div id="page-home" class="wiki-page active">
+                <h1>Official Databook Archive</h1>
+                <div class="article-subtitle">Canonical Encyclopedia Edition</div>
+                <p>Welcome to the consolidated master record framework for <b>Kimetsu no Yaiba</b>. This encyclopedia contains full history files, combat technical sheets, and databook records directly verified by creator Koyoharu Gotouge.</p>
+                <p>Tap the <b>VIEW MENU</b> button at the top to access the comprehensive character lists across the Demon Slayer Corps and the Twelve Kizuki.</p>
+            </div>
+
+            <!-- Tanjiro Portal -->
+            <div id="page-tanjiro" class="wiki-page">
+                <div class="wiki-page-grid">
+                    <div>
+                        <h1>Tanjiro Kamado</h1>
+                        <div class="article-subtitle">Corps Member Entry // #001</div>
+                        
