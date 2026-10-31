@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demon Slayer: Kimetsu no Yaiba - Comprehensive Databook Encyclopedia</title>
+    <title>Demon Slayer: Kimetsu no Yaiba - Ultimate Databook Database</title>
     <style>
         :root {
-            --bg-darker: #08080a;
-            --bg-main: #101014;
-            --bg-card: #181822;
-            --bg-hover: #222230;
+            --bg-darker: #060608;
+            --bg-main: #0c0c10;
+            --bg-card: #14141c;
+            --bg-hover: #1e1e2b;
             --text-pure: #ffffff;
             --text-body: #cfcfd8;
-            --text-muted: #858594;
+            --text-muted: #78788a;
             --brand-crimson: #e63946;
             --brand-flame: #ff5e13;
-            --brand-blood: #9a031e;
-            --border-muted: #252533;
+            --border-muted: #20202c;
             --font-stack: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
@@ -33,12 +32,11 @@
             color: var(--text-body);
             display: flex;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Sidebar Design */
+        /* Responsive Layout Grid */
         aside {
-            width: 290px;
+            width: 300px;
             background-color: var(--bg-darker);
             border-right: 1px solid var(--border-muted);
             display: flex;
@@ -52,13 +50,13 @@
             padding: 24px;
             font-size: 1.1rem;
             font-weight: 800;
-            letter-spacing: 1px;
             color: var(--text-pure);
             border-bottom: 1px solid var(--border-muted);
             text-transform: uppercase;
             display: flex;
             align-items: center;
             gap: 10px;
+            background: linear-gradient(to right, #0d0d14, transparent);
         }
 
         .brand-badge {
@@ -77,19 +75,19 @@
         }
 
         .nav-category {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
-            padding: 12px 24px 6px 24px;
+            padding: 16px 24px 6px 24px;
         }
 
         .nav-item {
-            padding: 12px 24px;
+            padding: 10px 24px;
             cursor: pointer;
             color: var(--text-body);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -104,11 +102,10 @@
             padding-left: 20px;
         }
 
-        /* Main Windows Layout */
         main {
-            margin-left: 290px;
+            margin-left: 300px;
             flex-grow: 1;
-            width: calc(100% - 290px);
+            width: calc(100% - 300px);
             padding: 40px;
             min-height: 100vh;
         }
@@ -135,25 +132,25 @@
             left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
-        /* Dynamic Grid Framework */
+        /* Wiki Structural Layout Layouts */
         .wiki-page-grid {
             display: grid;
-            grid-template-columns: 1fr 350px;
+            grid-template-columns: 1fr 360px;
             gap: 40px;
         }
 
         #display-viewport h1 {
-            font-size: 2.6rem;
+            font-size: 2.5rem;
             color: var(--text-pure);
             font-weight: 800;
             margin-bottom: 4px;
         }
 
         .article-subtitle {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             margin-bottom: 24px;
             text-transform: uppercase;
@@ -161,7 +158,7 @@
         }
 
         .section-header {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--brand-flame);
             margin: 30px 0 15px 0;
             border-bottom: 1px solid var(--border-muted);
@@ -172,34 +169,36 @@
         #display-viewport p {
             line-height: 1.8;
             margin-bottom: 16px;
-            color: #c4c4cf;
+            color: #b8b8c4;
+            text-align: justify;
         }
 
-        /* Databook Info Card Box */
+        /* Databook Profile Cards */
         .wiki-infobox {
             background-color: var(--bg-darker);
             border: 1px solid var(--border-muted);
-            border-radius: 8px;
-            padding: 18px;
+            border-radius: 10px;
+            padding: 20px;
             align-self: start;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         .infobox-title {
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-pure);
-            background: linear-gradient(90deg, var(--brand-crimson), var(--brand-blood));
+            background: linear-gradient(90deg, #b70918, #e63946);
             padding: 10px;
             border-radius: 6px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         .infobox-row {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
-            border-bottom: 1px solid #161622;
+            border-bottom: 1px solid #14141f;
             font-size: 0.88rem;
         }
 
@@ -210,78 +209,20 @@
 
         .infobox-value {
             color: var(--text-pure);
-            text-align: right;
+            font-weight: 500;
         }
 
-        /* Databook Statistics Bars */
-        .stat-container {
-            margin-top: 15px;
-        }
-
-        .stat-row {
-            margin-bottom: 12px;
-        }
-
-        .stat-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-
-        .stat-bar-outer {
-            background-color: #222230;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .stat-bar-inner {
-            background: linear-gradient(90deg, var(--brand-flame), var(--brand-crimson));
-            height: 100%;
-            border-radius: 4px;
-        }
-
-        /* Lists and Cards Layout */
         .databook-list {
             margin-left: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .databook-list li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             line-height: 1.6;
         }
 
-        .directory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .directory-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-muted);
-            border-radius: 8px;
-            padding: 20px;
-            cursor: pointer;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            text-align: center;
-        }
-
-        .directory-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--brand-crimson);
-        }
-
-        .card-glyph {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
             body { flex-direction: column; }
             aside { width: 100%; height: auto; position: relative; }
             main { margin-left: 0; width: 100%; padding: 20px; }
@@ -294,41 +235,56 @@
     <aside>
         <div class="brand-header">
             <div class="brand-badge"></div>
-            <span>KNY Master Databook</span>
+            <span>KNY Complete Databook</span>
         </div>
         <ul class="nav-sections">
-            <div class="nav-category">Database Systems</div>
-            <li class="nav-item active" id="nav-home">📖 Master Overview</li>
-            <li class="nav-item" id="nav-databooks">📚 Official Fanbooks Index</li>
+            <div class="nav-category">Database Hub</div>
+            <li class="nav-item active" id="nav-home">📖 Master Archive Overview</li>
             
-            <div class="nav-category">Demon Slayer Profiles</div>
+            <div class="nav-category">The Main Squad</div>
             <li class="nav-item" id="nav-tanjiro">🎴 Tanjiro Kamado</li>
+            <li class="nav-item" id="nav-nezuko">🎀 Nezuko Kamado</li>
+            <li class="nav-item" id="nav-zenitsu">⚡ Zenitsu Agatsuma</li>
+            <li class="nav-item" id="nav-inosuke">🐗 Inosuke Hashibira</li>
+            <li class="nav-item" id="nav-genya">🚬 Genya Shinazugawa</li>
+            <li class="nav-item" id="nav-kanao">🦋 Kanao Tsuyuri</li>
+
+            <div class="nav-category">The Nine Hashira</div>
+            <li class="nav-item" id="nav-giyuu">🌊 Giyuu Tomioka</li>
+            <li class="nav-item" id="nav-shinobu">🧪 Shinobu Kocho</li>
             <li class="nav-item" id="nav-rengoku">🔥 Kyojuro Rengoku</li>
+            <li class="nav-item" id="nav-uzui">💎 Tengen Uzui</li>
             <li class="nav-item" id="nav-muichiro">🌫️ Muichiro Tokito</li>
-            
-            <div class="nav-category">Antagonists</div>
-            <li class="nav-item" id="nav-muzan">🩸 Muzan Kibutsuji</li>
+            <li class="nav-item" id="nav-mitsuri">💖 Mitsuri Kanroji</li>
+            <li class="nav-item" id="nav-obanai">🐍 Obanai Iguro</li>
+            <li class="nav-item" id="nav-sanemi">🌪️ Sanemi Shinazugawa</li>
+            <li class="nav-item" id="nav-gyomei">📿 Gyomei Himejima</li>
+
+            <div class="nav-category">Twelve Kizuki & Origin</div>
+            <li class="nav-item" id="nav-muzan">🩸 Lord Muzan Kibutsuji</li>
+            <li class="nav-item" id="nav-kokushibo">🌙 Kokushibo (Upper 1)</li>
+            <li class="nav-item" id="nav-douma">❄️ Douma (Upper 2)</li>
+            <li class="nav-item" id="nav-akaza">❄️ Akaza (Upper 3)</li>
         </ul>
     </aside>
 
     <main>
         <div class="search-container">
-            <input type="text" id="search-box" class="search-input" placeholder="Search verified databook logs...">
+            <input type="text" id="search-box" class="search-input" placeholder="Query data nodes for any character profile...">
         </div>
         
         <div id="display-viewport">
-            <!-- Content loads instantly -->
+            <!-- Content mounts here -->
         </div>
     </main>
 
     <script>
         const databookDB = {
             home: {
-                title: "Official Databook & Fanbook Archive",
-                subtitle: "Canonical data logs compiled from the official character logs.",
-                content: `
-                    <p>Welcome to the consolidated master record framework for <b>Kimetsu no Yaiba</b>. This interface is structured using specific physical data points, background history, character designs, and special statistics pulled directly from the official publication databooks written by creator Koyoharu Gotouge.</p>
-                    <h2 class="section-header">Archive Features</h2>
-                    <p>Unlike regular fandom platforms, this system focuses on canonical stat assessments, official battle power dimensions, age parameters, and personal background trivia straight from the published databooks.</p>
-                    <div class="directory-grid">
-                    
+                title: "The Ultimate Character Databook Registry",
+                subtitle: "Comprehensive Records across the Entire Corps and Twelve Kizuki Ecosystem.",
+                content: `<p>Welcome to the absolute master compilation file. This section indexes canonical data points extracted directly from both official databooks published by Koyoharu Gotouge [|1.3.2, 1.3.3|]. Select any profile node from the control menu on the left to read precise height records, birthdays, family origins, combat classifications, and hidden Taisho gossip details [|1.3.3|].</p>`
+            },
+            tanjiro: {
+                title: "Tanjiro Kamado", subtitle: "Corps Member Entry // Subject #001",
+        
