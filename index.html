@@ -2,77 +2,100 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KNY Ultimate Wiki</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>KNY Ultimate Wiki - Full Databook</title>
 <style>
-body{margin:0;background:#101016;color:#cfcfd8;font-family:system-ui,sans-serif}
-.header{display:flex;justify-content:space-between;align-items:center;background:#08080c;padding:15px 20px;border-bottom:1px solid #222;position:sticky;top:0;z-index:1100}
-.menu-btn{background:#e63946;color:white;border:none;padding:8px 14px;border-radius:4px;font-weight:bold;cursor:pointer}
-aside{width:280px;background:#08080c;position:fixed;top:55px;bottom:0;left:0;z-index:1000;transition:transform .3s ease;border-right:1px solid #222}
+:root{--bg-dark:#08080c;--bg-main:#101016;--bg-card:#1b1b22;--text:#cfcfd8;--red:#e63946;--orange:#ff5e13}
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+body{background-color:var(--bg-main);color:var(--text);display:flex;min-height:100vh;flex-direction:column;overflow-x:hidden}
+.header{display:flex;justify-content:space-between;align-items:center;background-color:var(--bg-dark);padding:15px 20px;border-bottom:1px solid #222;position:sticky;top:0;z-index:1100}
+.menu-btn{background:var(--red);color:white;border:none;padding:8px 14px;border-radius:4px;font-weight:bold;cursor:pointer;z-index:1200}
+aside{width:300px;background-color:var(--bg-dark);position:fixed;top:55px;bottom:0;left:0;z-index:1000;display:flex;flex-direction:column;transition:transform .3s ease;border-right:1px solid #222}
 aside.hidden{transform:translateX(-100%)}
-.item{padding:12px 20px;cursor:pointer;border-left:3px solid transparent;color:#a0a0ab}
-.item.active{background:#1b1b22;border-left-color:#e63946;color:white}
-main{padding:20px}
-.page{display:none}.page.active{display:block}
-h1{color:white} .box{background:#08080c;border:1px solid #222;border-radius:8px;padding:15px;margin-top:20px}
-.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #222}
-.overlay{display:none;position:fixed;top:55px;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:900}
-.overlay.active{display:block}
-@media(min-width:901px){.header{display:none} aside{top:0;transform:none!important} main{margin-left:280px;padding:40px} .overlay{display:none!important}}
+.nav-sections{list-style:none;padding:10px 0;overflow-y:auto;flex-grow:1}
+.category{font-size:.72rem;font-weight:700;color:#666;padding:14px 20px 4px 20px;text-transform:uppercase}
+.item{padding:11px 20px;cursor:pointer;font-size:.92rem;border-left:3px solid transparent;color:#a0a0ab}
+.item:hover,.item.active{background:var(--bg-card);border-left-color:var(--red);color:white}
+main{flex-grow:1;padding:20px;width:100%}
+.page{display:none}.page.active{display:block!important}
+h1{font-size:1.9rem;color:white;margin-bottom:5px}.sub{font-size:.82rem;color:#666;margin-bottom:20px;text-transform:uppercase}
+h2{font-size:1.12rem;color:var(--orange);margin:22px 0 10px 0;border-bottom:1px solid #222;padding-bottom:5px;text-transform:uppercase}
+p{line-height:1.7;margin-bottom:12px;font-size:.95rem}
+.grid{display:flex;flex-direction:column;gap:20px}.box{background-color:var(--bg-dark);border:1px solid #222;border-radius:8px;padding:15px}
+.box-title{text-align:center;font-weight:bold;background:var(--red);color:white;padding:7px;border-radius:4px;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1c1c24;font-size:.9rem}
+.tag{display:inline-block;background:#1e1e28;border:1px solid #2a2a35;padding:3px 8px;border-radius:12px;font-size:.78rem;margin:3px 4px 3px 0;color:#aaa}
+.overlay{display:none;position:fixed;top:55px;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:900}.overlay.active{display:block}
+@media(min-width:901px){body{flex-direction:row}.header{display:none}aside{top:0;transform:none!important;position:fixed} .overlay{display:none!important} main{margin-left:300px;padding:40px} .grid{display:grid;grid-template-columns:1fr 330px;gap:30px}}
 </style>
 </head>
 <body>
 <div class="header"><div style="font-weight:800;color:white">⚔️ KNY ENCYCLOPEDIA</div><button class="menu-btn" onclick="toggleMenu()">📂 MENU</button></div>
 <div id="sidebarOverlay" class="overlay" onclick="toggleMenu()"></div>
 <aside id="menu" class="hidden">
+<ul class="nav-sections">
+<div class="category">Database Portal</div>
 <div class="item active" id="btn-home" onclick="go('home')">📖 Master Overview</div>
-<div class="item" id="btn-kama" onclick="go('kama')">🎭 Kamanue (Lower 6) - FIXED</div>
-<div class="item" id="btn-rui" onclick="go('rui')">🕸️ Rui (Lower 5)</div>
+<div class="category">Tanjiro Trio & Allies</div>
+<div class="item" id="btn-tanjiro" onclick="go('tanjiro')">🎴 Tanjiro Kamado</div>
+<div class="item" id="btn-nezuko" onclick="go('nezuko')">🎀 Nezuko Kamado</div>
+<div class="item" id="btn-zenitsu" onclick="go('zenitsu')">⚡ Zenitsu Agatsuma</div>
+<div class="item" id="btn-inosuke" onclick="go('inosuke')">🐗 Inosuke Hashibira</div>
+<div class="item" id="btn-genya" onclick="go('genya')">🚬 Genya Shinazugawa</div>
+<div class="item" id="btn-kanao" onclick="go('kanao')">🦋 Kanao Tsuyuri</div>
+<div class="item" id="btn-aoi" onclick="go('aoi')">🦋 Aoi Kanzaki</div>
+<div class="item" id="btn-girls" onclick="go('girls')">👧 Sumi, Kiyo, & Naho</div>
+<div class="category">The Nine Hashira</div>
+<div class="item" id="btn-giyuu" onclick="go('giyuu')">🌊 Giyuu Tomioka</div>
+<div class="item" id="btn-shinobu" onclick="go('shinobu')">🧪 Shinobu Kocho</div>
+<div class="item" id="btn-rengoku" onclick="go('rengoku')">🔥 Kyojuro Rengoku</div>
+<div class="item" id="btn-uzui" onclick="go('uzui')">💎 Tengen Uzui</div>
+<div class="item" id="btn-muichiro" onclick="go('muichiro')">🌫️ Muichiro Tokito</div>
+<div class="item" id="btn-mitsuri" onclick="go('mitsuri')">💖 Mitsuri Kanroji</div>
+<div class="item" id="btn-obanai" onclick="go('obanai')">🐍 Obanai Iguro</div>
+<div class="item" id="btn-sanemi" onclick="go('sanemi')">🌪️ Sanemi Shinazugawa</div>
+<div class="item" id="btn-gyomei" onclick="go('gyomei')">📿 Gyomei Himejima</div>
+<div class="category">Demons Progenitor</div>
+<div class="item" id="btn-muzan" onclick="go('muzan')">🩸 Lord Muzan Kibutsuji</div>
+<div class="category">Upper Moons</div>
+<div class="item" id="btn-koku" onclick="go('koku')">🌙 Kokushibo (Upper 1)</div>
+<div class="item" id="btn-douma" onclick="go('douma')">❄️ Douma (Upper 2)</div>
+<div class="item" id="btn-akaza" onclick="go('akaza')">💥 Akaza (Upper 3)</div>
+<div class="item" id="btn-hantengu" onclick="go('hantengu')">🪵 Hantengu (Upper 4)</div>
+<div class="item" id="btn-gyokko" onclick="go('gyokko')">🏺 Gyokko (Upper 5)</div>
+<div class="item" id="btn-daki" onclick="go('daki')">👘 Daki & Gyutaro (Upper 6)</div>
+<div class="category">Lower Moons</div>
 <div class="item" id="btn-enmu" onclick="go('enmu')">🚂 Enmu (Lower 1)</div>
-<div class="item" id="btn-tanjiro" onclick="go('tanjiro')">🎴 Tanjiro</div>
+<div class="item" id="btn-rokuro" onclick="go('rokuro')">💀 Rokuro (Lower 2)</div>
+<div class="item" id="btn-waku" onclick="go('waku')">💨 Wakuraba (Lower 3)</div>
+<div class="item" id="btn-muka" onclick="go('muka')">👁️ Mukago (Lower 4)</div>
+<div class="item" id="btn-rui" onclick="go('rui')">🕸️ Rui (Lower 5)</div>
+<div class="item" id="btn-kama" onclick="go('kama')">🎭 Kamanue (Lower 6)</div>
+</ul>
 </aside>
 <main>
 <div id="page-home" class="page active">
 <h1>Official Databook Archive</h1>
-<p>Welcome! If you see this, the blank bug is FIXED.</p>
-<p>Click 📂 MENU and then Kamanue - the JS leak is gone now.</p>
+<div class="sub">Encyclopedia Edition - Full Restoration</div>
+<p>Welcome to the complete character database for Kimetsu no Yaiba. 32 entries. Tap 📂 MENU to load any entry. Kamanue Lower 6 fixed - no JS leak.</p>
 </div>
 
-<div id="page-kama" class="page">
-<h1>Kamanue (Lower 6)</h1>
-<h2>History</h2>
-<p>Held the rank of Lower Rank Six and holds the unfortunate distinction of being the first lower rank member erased on-site by Lord Muzan.</p>
-<p>His execution was carried out instantly because he was caught mentally complaining about Muzan's resource allocation parameters and demands.</p>
-<div class="box">
-<div class="row"><span>Rank</span><span>Lower Moon 6</span></div>
-<div class="row"><span>Status</span><span>Purged - FIXED</span></div>
-<div class="row"><span>Debut</span><span>Chapter 51</span></div>
-</div>
-</div>
+<div id="page-tanjiro" class="page"><div class="grid"><div><h1>Tanjiro Kamado</h1><div class="sub">Entry #001 - Sun Breathing</div><h2>History</h2><p>After family slaughtered by Muzan and Nezuko turned demon, he joined Corps. Initially Water Breathing, later awakened Hinokami Kagura which is Sun Breathing.</p><h2>Abilities</h2><p>Water, Hinokami Kagura, Transparent World. Smell detects emotions.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>July 14</span></div><div class="row"><span>Height</span><span>165 cm</span></div><div class="row"><span>Breathing</span><span>Water / Sun</span></div><div class="row"><span>Status</span><span>Alive</span></div></div></div></div>
 
-<div id="page-rui" class="page"><h1>Rui</h1><p>Spider demon.</p></div>
-<div id="page-enmu" class="page"><h1>Enmu</h1><p>Mugen Train demon.</p></div>
-<div id="page-tanjiro" class="page"><h1>Tanjiro Kamado</h1><p>Sun Breathing user.</p></div>
-</main>
+<div id="page-nezuko" class="page"><div class="grid"><div><h1>Nezuko Kamado</h1><div class="sub">The Chosen Demon</div><h2>Abilities</h2><p>Sleeps instead of eating humans. Exploding Blood burns only demons. Size manipulation.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Blood Art</span><span>Exploding Blood</span></div><div class="row"><span>Status</span><span>Demon → Human</span></div></div></div></div>
 
-<script>
-function toggleMenu(){
-  var m=document.getElementById('menu');
-  var o=document.getElementById('sidebarOverlay');
-  if(m.classList.contains('hidden')){m.classList.remove('hidden');o.classList.add('active');}
-  else{m.classList.add('hidden');o.classList.remove('active');}
-}
-function go(id){
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
-  document.querySelectorAll('.item').forEach(function(i){i.classList.remove('active')});
-  var pg=document.getElementById('page-'+id);
-  var btn=document.getElementById('btn-'+id);
-  if(pg) pg.classList.add('active');
-  if(btn) btn.classList.add('active');
-  document.getElementById('menu').classList.add('hidden');
-  document.getElementById('sidebarOverlay').classList.remove('active');
-  window.scrollTo(0,0);
-}
-</script>
-</body>
-</html>
+<div id="page-zenitsu" class="page"><div class="grid"><div><h1>Zenitsu Agatsuma</h1><div class="sub">Thunder Breathing</div><h2>Combat</h2><p>Only 1st Form Thunderclap and Flash but perfected to Sixfold, Eightfold, Godspeed. Fights while asleep.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Breathing</span><span>Thunder</span></div></div></div></div>
+
+<div id="page-inosuke" class="page"><div class="grid"><div><h1>Inosuke Hashibira</h1><div class="sub">Beast Breathing</div><p>Raised by boars, creator of Beast Breathing. Dual jagged swords.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Birthday</span><span>April 22</span></div></div></div></div>
+
+<div id="page-genya" class="page"><div class="grid"><div><h1>Genya Shinazugawa</h1><div class="sub">Demon-Eating</div><p>Cannot use Breathing. Gains demon powers by eating demon flesh. Uses shotgun.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Status</span><span>Deceased</span></div></div></div></div>
+
+<div id="page-kanao" class="page"><div class="grid"><div><h1>Kanao Tsuyuri</h1><div class="sub">Flower Breathing</div><p>Shinobu's Tsuguko. Exceptional eyesight sees opening threads.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Breathing</span><span>Flower</span></div></div></div></div>
+
+<div id="page-aoi" class="page"><div class="grid"><div><h1>Aoi Kanzaki</h1><div class="sub">Butterfly Estate</div><p>Former Water apprentice, now manages Butterfly Estate recovery ward.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Role</span><span>Medic</span></div></div></div></div>
+
+<div id="page-girls" class="page"><div class="grid"><div><h1>Sumi, Kiyo, & Naho</h1><div class="sub">Butterfly Girls</div><p>Orphan helpers at Butterfly Estate.</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Role</span><span>Assistants</span></div></div></div></div>
+
+<div id="page-giyuu" class="page"><div class="grid"><div><h1>Giyuu Tomioka</h1><div class="sub">Water Hashira</div><h2>History</h2><p>First Hashira Tanjiro meets. Created 11th Form: Dead Calm (Nagi).</p></div><div class="box"><div class="box-title">Metrics</div><div class="row"><span>Breathing</span><span>Water</span></div></div></div></div>
+
+<div id="page-shinobu" class="page"><div class="grid"><div><h1>Shinobu Kocho</h1><div class="sub">Insect Hashira</div><p>Smallest Hashira, uses wisteria poisons. Fastest thrust.</p></div><div class="box"><div class="box-title">Metrics</
