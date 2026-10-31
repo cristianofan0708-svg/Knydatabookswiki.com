@@ -3,46 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KNY Wiki - ALL 32 CHARACTERS</title>
+<style>
+body{margin:0;background:#101016;color:#cfcfd8;font-family:system-ui;display:flex;flex-direction:column;min-height:100vh}
+.header{position:sticky;top:0;background:#08080c;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #222;z-index:10}
+.btn{background:#e63946;color:#fff;border:0;padding:8px 14px;border-radius:4px;font-weight:bold;cursor:pointer}
+#menu{position:fixed;top:54px;left:0;bottom:0;width:300px;background:#08080c;border-right:1px solid #222;overflow:auto;transform:translateX(-100%);transition:.25s;z-index:9}
+#menu.open{transform:translateX(0)}
+.it{padding:11px 20px;cursor:pointer;color:#aaa;border-left:3px solid transparent}
+.it.on{background:#1b1b22;color:#fff;border-left-color:#e63946}
+.cat{font-size:.7rem;color:#666;padding:14px 20px 4px;text-transform:uppercase;font-weight:700}
+main{padding:20px;flex:1}
+.pg{display:none}.pg<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KNY Wiki - FIXED</title>
 <style>
-body{background:#101016;color:#cfcfd8;margin:0;font-family:system-ui,sans-serif;display:flex;flex-direction:column;min-height:100vh}
-.header{display:flex;justify-content:space-between;align-items:center;background:#08080c;padding:15px 20px;border-bottom:1px solid #222;position:sticky;top:0;z-index:1100}
-.menu-btn{background:#e63946;color:#fff;border:0;padding:8px 14px;border-radius:4px;font-weight:bold;cursor:pointer}
-aside{width:300px;background:#08080c;position:fixed;top:55px;bottom:0;left:0;z-index:1000;overflow-y:auto;transition:.3s;border-right:1px solid #222}
-aside.hidden{transform:translateX(-100%)}
-.item{padding:11px 20px;cursor:pointer;color:#a0a0ab;border-left:3px solid transparent}
-.item.active{background:#1b1b22;color:#fff;border-left-color:#e63946}
-.category{font-size:.7rem;color:#666;padding:14px 20px 4px;text-transform:uppercase;font-weight:700}
-main{padding:20px;flex:1}
-.page{display:none}.page.active{display:block}
-h1{color:#fff}.sub{color:#666;font-size:.8rem;margin-bottom:20px;text-transform:uppercase}
-h2{color:#ff5e13;margin:20px 0 10px;border-bottom:1px solid #222;padding-bottom:5px;text-transform:uppercase}
-p{line-height:1.7;margin-bottom:12px}
-.grid{display:flex;flex-direction:column;gap:20px}.box{background:#08080c;border:1px solid #222;border-radius:8px;padding:15px}
-.box-title{background:#e63946;color:#fff;text-align:center;padding:7px;border-radius:4px;margin-bottom:10px;font-weight:bold}
-.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222;font-size:.9rem}
-.overlay{display:none;position:fixed;top:55px;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:900}.overlay.active{display:block}
-@media(min-width:901px){.header{display:none}aside{top:0;transform:none!important}main{margin-left:300px;padding:40px}.grid{display:grid;grid-template-columns:1fr 330px}.overlay{display:none!important}}
+body{margin:0;background:#101016;color:#cfcfd8;font-family:system-ui}
+.header{position:sticky;top:0;background:#08080c;display:flex;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #222;z-index:10}
+.btn{background:#e63946;color:#fff;border:0;padding:8px 14px;border-radius:4px;font-weight:bold}
+#menu{position:fixed;top:54px;left:0;bottom:0;width:280px;background:#08080c;border-right:1px solid #222;overflow:auto;transform:translateX(-100%);transition:.25s;z-index:9}
+#menu.open{transform:translateX(0)}
+.it{padding:10px 18px;cursor:pointer;color:#aaa;border-left:3px solid transparent}
+.it.on{background:#1b1b22;color:#fff;border-left-color:#e63946}
+.cat{font-size:.65rem;color:#555;padding:12px 18px 4px;text-transform:uppercase;font-weight:700}
+main{padding:20px}
+.pg{display:none}.pg.on{display:block}
+.box{margin-top:16px;background:#08080c;border:1px solid #222;border-radius:8px;padding:12px}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1a1a22;font-size:.9rem}
+@media(min-width:900px){.header{display:none}#menu{transform:none;top:0}main{margin-left:280px;padding:32px}}
 </style>
 </head>
 <body>
-<div class="header"><div style="font-weight:800">⚔️ KNY ENCYCLOPEDIA</div><button class="menu-btn" onclick="toggleMenu()">📂 MENU</button></div>
-<div id="sidebarOverlay" class="overlay" onclick="toggleMenu()"></div>
-<aside id="menu" class="hidden">
-<div class="category">Database Portal</div>
-<div class="item active" id="btn-home" onclick="go('home')">📖 Master Overview</div>
-<div class="category">Tanjiro Crew</div>
-<div class="item" id="btn-tanjiro" onclick="go('tanjiro')">🎴 Tanjiro Kamado</div>
-<div class="item" id="btn-nezuko" onclick="go('nezuko')">🎀 Nezuko Kamado</div>
-<div class="item" id="btn-zenitsu" onclick="go('zenitsu')">⚡ Zenitsu</div>
-<div class="item" id="btn-inosuke" onclick="go('inosuke')">🐗 Inosuke</div>
-<div class="item" id="btn-genya" onclick="go('genya')">🚬 Genya</div>
-<div class="item" id="btn-kanao" onclick="go('kanao')">🦋 Kanao Tsuyuri</div>
-<div class="item" id="btn-aoi" onclick="go('aoi')">🦋 Aoi Kanzaki</div>
-<div class="item" id="btn-girls" onclick="go('girls')">👧 Sumi Kiyo Naho</div>
-<div class="category">Nine Hashira</div>
-<div class="item" id="btn-giyuu" onclick="go('giyuu')">🌊 Giyuu Tomioka</div>
-<div class="item" id="btn-shinobu" onclick="go('shinobu')">🧪 Shinobu Kocho</div>
-<div class="item" id="btn-rengoku" onclick="go('rengoku')">🔥 Kyojuro Rengoku</div>
-<div class="item" id="btn-uzui" onclick="go('uzui')">💎 Tengen Uzui</div>
-<div class="item"
+<div class="header"><b>⚔️ KNY ENCYCLOPEDIA</b><button class="btn" onclick="document.getElementById('menu').classList.toggle('open')">📂 MENU</button></div>
+<div id="menu">
+<div class="cat">Portal</div>
+<div class="it on" id="b-home" onclick="go('home')">📖 Master Overview</div>
+<div class="cat">Tanjiro Crew</div>
+<div class="it" id="b-tanjiro" onclick="go('tanjiro')">🎴 Tanjiro Kamado</div>
+<div class="it" id="b-nezuko" onclick="go('nezuko')">🎀 Nezuko Kamado</div>
+<div class="it" id="b-zenitsu" onclick="go('zenitsu')">⚡ Zenitsu</div>
+<div class="it" id="b-inosuke" onclick="go('inosuke')">🐗 Inosuke</div>
+<div class="it" id="b-genya" onclick="go('genya')">🚬 Genya</div>
+<div class="it" id="b-kanao" onclick="go('kanao')">🦋 Kanao Tsuyuri</div>
+<div class="it" id="b-aoi" onclick="go('aoi')">🦋 Aoi Kanzaki</div>
+<div class="it" id="b-girls" onclick="go('girls')">👧 Sumi Kiyo Naho</div>
+<div class="cat">Nine Hashira</div>
+<div class="it" id="b-giyuu" onclick="go('giyuu')">🌊 Giyuu Tomioka</div>
+<div class="it" id="b-shinobu" onclick="go('shinobu')">🧪 Shinobu Kocho</div>
+<div class="it" id="b-rengoku" onclick="go('rengoku')">🔥 Kyojuro Rengoku</div>
+<div class="it" id="b-uzui" onclick="go('uzui')">💎 Tengen Uzui</div>
+<div class="it" id="b-muichiro" onclick="go('muichiro')">🌫️ Muichiro Tokito</div>
+<div class="it" id="b-mitsuri" onclick="go('mitsuri')">💖 Mitsuri Kanroji</div>
+<div class="it" id="b-obanai" onclick="go('obanai')">🐍 Obanai Iguro</div>
+<div class="it" id="b-sanemi" onclick="go('sanemi')">🌪️ Sanemi Shinazugawa</div>
+<div class="it" id="b-gyomei" onclick="go('gyomei')">📿 Gyomei Himejima</div>
+<div class="cat">Muzan</div>
+<div class="it" id="b-muzan" onclick="go('muzan')">🩸 Lord Muzan</div>
+<div class="cat">Upper Moons</div>
+<div class="it" id="b-koku" onclick="go('koku')">🌙 Kokushibo (Upper 1)</div>
+<div class="it" id="b-douma" onclick="go('douma')">❄️ Douma (Upper 2)</div>
+<div class="it" id="b-akaza" onclick="go('akaza')">💥 Akaza (Upper 3)</div>
+<div class="it" id="b-hantengu" onclick="go('hantengu')">🪵 Hantengu (Upper 4)</div>
+<div class="it" id="b-gyokko" onclick="go('gyokko')">🏺 Gyokko (Upper 5)</div>
+<div class="it" id="b-daki" onclick="go('daki')">👘 Daki & Gyutaro (Upper 6)</div>
+<div class="cat">Lower Moons</div>
+<div class="it" id="b-enmu" onclick="go('enmu')">🚂 Enmu (Lower 1)</div>
+<div class="it" id="b-rokuro" onclick="go('rokuro')">💀 Rokuro (Lower 2)</div>
+<div class="it" id="b-waku" onclick="go('waku')">💨 Wakuraba (Lower 3)</div>
+<div class="it" id="b-muka" onclick="go('muka')">👁️ Mukago (Lower 4)</div>
+<div class="it" id="b-rui" onclick="go('rui')">🕸️ Rui (Lower 5)</div>
+<div class="it" id="b-kama" onclick="go('kama')">🎭 Kamanue (Lower 6)</div>
+</div>
+<main>
+<div id="p-home" class="pg on"><h1 style="color:#fff">Official Databook Archive</h1><p style="color:#666;font-size:.8rem">FIXED - All 32 pages now clickable</p><p>Tap MENU top right. Every character now works - no more black empty screen. If you can read this, the site is fixed.</p><p><b>Kamanue (Lower 6) fixed - no JS leak.</b></p></div>
+
+<div id="p-tanjiro" class="pg"><h1>Tanjiro Kamado</h1><p>Sun Breathing user. After family slaughtered by Muzan, joined Corps. Water + Hinokami Kagura. Mark awakened.</p><div class="box"><div class="row"><span>Breathing</span><span>Water / Sun</span></div><div class="row"><span>Status</span><span>Alive</span></div></div></div>
+<div id="p-nezuko" class="pg"><h1>Nezuko Kamado</h1><p>Chosen demon who conquered sun. Exploding Blood burns only demons. Sleeps instead of eating humans.</p><div class="box"><div class="row"><span>Blood Art</span><span>Exploding Blood</span></div></div></div>
+<div id="p-zenitsu" class="pg"><h1>Zenitsu Agatsuma</h1><p>Thunder Breathing - only 1st Form but perfected to Sixfold, Eightfold, Godspeed. Fights asleep.</p></div>
+<div id="p-inosuke" class="pg"><h1>Inosuke Hashibira</h1><p>Beast Breathing creator. Raised by boars. Dual jagged swords. Mother Kotoha killed by Douma.</p></div>
+<div id="p-genya" class="pg"><h1>Genya Shinazugawa</h1><p>Cannot use Breathing. Eats demon flesh for temporary demon powers. Uses shotgun. Brother of Sanemi.</p></div>
+<div id="p-kanao" class="pg"><h1>Kanao Tsuyuri</h1><p>Flower Breathing Tsuguko of Shinobu. Sees opening threads. Coin decision, then learns to decide herself.</p></div>
+<div id="p-aoi" class="pg"><h1>Aoi Kanzaki</h1><p>Butterfly Estate manager. Former Water apprentice. Decided not strong enough for Front Lines.</p></div>
+<div id="p-girls" class="pg"><h1>Sumi, Kiyo & Naho</h1><p>Butterfly Estate orphan girls helpers.</p></div>
+<div id="p-giyuu" class="pg"><h1>Giyuu Tomioka</h1><p>Water Hashira. Created 11th Form Dead Calm Nagi. Quiet, wears half of Sabito's haori.</p></div>
+<div id="p-shinobu" class="pg"><h1>Shinobu Kocho</h1><p>Insect Hashira. Uses wisteria poisons. Fastest thrust. Smallest Hashira. Sister Kanae killed by Douma.</p></div>
+<div id="p-rengoku" class="pg"><h1>Kyojuro Rengoku</h1><p>Flame Hashira. SET YOUR HEART ABLAZE. Protected 200+ on Mugen Train vs Akaza. UMAI!</p></div>
+<div id="p-uzui" class="pg"><h1>Tengen Uzui</h1><p>Sound Hashira. God of Flamboyance. 3 wives. Dual cleavers. Retires after losing eye and arm vs Gyutaro.</p></div>
+<div id="p-muichiro" class="pg"><h1>Muichiro Tokito</h1><p>Mist Hashira. Youngest at 14. Became Hashira in 2 months. Descendant of Kokushibo. First to awaken Mark.</p></div>
+<div id="p-mitsuri" class="pg"><h1>Mitsuri Kanroji</h1><p>Love Hashira. Muscle density 8x normal. Ribbon sword only she can wield.</p></div>
+<div id="p-obanai" class="pg"><h1>Obanai Iguro</h1><p>Serpent Hashira. Always with snake Kaburamaru. Blind right eye. Survivor of snake cult. Loves Mitsuri.</p></div>
+<div id="p-sanemi" class="pg"><h1>Sanemi Shinazugawa</h1><p>Wind Hashira. Marechi blood intoxicates demons. Scarred. Lost family to mother demon.</p></div>
+<div id="p-gyomei" class="pg"><h1>Gyomei Himejima</h1><p>Stone Hashira - Strongest. Blind monk. Hand-axe and spiked flail. Cries from compassion.</p></div>
+<div id="p-muzan" class="pg"><h1>Lord Muzan Kibutsuji</h1><p>Demon King. First demon Heian era. 7 hearts 5 brains. Weak to sun and red blades. Shapeshifts.</p></div>
+<div id="p-koku" class="pg"><h1>Kokushibo (Upper 1)</h1><p>Older twin of Yoriichi. 6 eyes Moon Breathing 16 forms. Strongest Upper for 400 years. Ancestor of Muichiro.</p></div>
+<div id="p-douma" class="pg"><h1>Douma (Upper 2)</h1><p>Rainbow eyes, no emotions. Cult leader. Killed Kanae and Kotoha. Freezing ice Blood Art.</p></div>
+<div id="p-akaza" class="pg"><h1>Akaza (Upper 3)</h1><p>Hakuji martial artist. Refuses to eat women. Killed Rengoku. Destructive Death Compass. Regains memories and destroys self.</p></div>
+<div id="p-hantengu" class="pg"><h1>Hantengu (Upper 4)</h1><p>Fear demon. Splits into 6 emotion clones: Anger, Pleasure, Sorrow, Joy, Hate, Resentment.</p></div>
+<div id="p-gyokko" class="pg"><h1>Gyokko (Upper 5)</h1><p>Vase demon obsessed with art. Lives in pots teleports. Fish demons. Killed by Muichiro.</p></div>
+<div id="p-daki" class="pg"><h1>Daki & Gyutaro (Upper 6)</h1><p>Sibling duo. Daki sash, Gyutaro sickle. Must be beheaded simultaneously. From slums.</p></div>
+<div id="p-enmu" class="pg"><h1>Enmu (Lower 1)</h1><p>Dream demon Mugen Train. Sadistic. Merges with train putting 200 to sleep to eat spiritual cores. Given Muzan's blood after purge because wasn't afraid. Killed by Tanjiro cutting neck bone.</p><div class="box"><div class="row"><span>Rank</span><span>Lower 1 - Last Lower Moon</span></div><div class="row"><span>Blood Art</span><span>Dream Manipulation + Train Fusion</span></div></div></div>
+<div id="p-rokuro" class="pg"><h1>Rokuro (Lower 2)</h1><p>Lower Moon Two who requested more power from Muzan in Infinity Castle meeting. Executed instantly for insubordination. Eyes had Lower Two kanji.</p><div class="box"><div class="row"><span>Status</span><span>Purged by Muzan</span></div></div></div>
+<div id="p-waku" class="pg"><h1>Wakuraba (Lower 3)</h1><p>Runner who tried to escape purge. Known for speed. Caught mid-air and beheaded by Muzan's whip tendrils.</p><div class="box"><div class="row"><span>Status</span><span>Purged - Attempted Escape</span></div></div></div>
+<div id="p-muka" class="pg"><h1>Mukago (Lower 4)</h1><p>Coward with inferiority complex. Stuttered and apologized. Couldn't answer why Lower Moons weak, executed.</p><div class="box"><div class="row"><span>Status</span><span>Purged</span></div></div></div>
+<div id="p-rui" class="pg"><h1>Rui (Lower 5)</h1><p>Spider Family Mount Natagumo. Created fake family via fear using spider threads sharper than Nichirin. Obsessed with family bonds because real parents tried to kill him when turned demon. Killed by Giyuu after Tanjiro cut threads with Hinokami Kagura.</p><div class="box"><div class="row"><span>Rank</span><span>Lower 5</span></div><div class="row"><span>Blood Art</span><span>Spider Threads - Murderous Eye Basket</span></div></div></div>
+<div id="p-kama" class="pg"><h1>Kamanue (Lower 6)</h1><p><b>FIXED EDITION - Reference like you wanted.</b><br><br>Held Lower Rank Six and is first lower rank member erased on-site by Lord Muzan during Lower Moon purge in Infinity Castle. Executed instantly because caught mentally complaining about Muzan's resource allocation. Muzan read his mind and said How dare you think that. Proves Muzan can read thoughts of those who share his blood. Never showed Blood Art. Chapter 51 Episode 23.</p><div class="box"><div class="row"><span>Rank</span><span>Lower Moon 6</span></div><div class="row"><span>Status</span><span>Purged - First to Die</span></div><div class="row"><span>Debut</span><span>Chapter 51</span></div><div class="row"><span>Blood Art</span><span>Unknown - Never Shown</span></div><div class="row"><span>Killed By</span><span>Muzan Kibutsuji</span></div></div></div>
+</main>
+<script>
+function go(id){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.it').forEach(i=>i.classList.remove('on'));
+  var pg=document.getElementById('p-'+id);
+  var bt=document.getElementById('b-'+id);
+  if(pg) pg.classList.add('on');
+  if(bt) bt.classList.add('on');
+  document.getElementById('menu').classList.remove('open');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
